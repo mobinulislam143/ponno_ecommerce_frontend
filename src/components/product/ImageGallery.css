@@ -1,0 +1,5 @@
+@media only screen and (max-width: 430px) {
+    .image-gallery {
+        width: 320px;
+  }
+}
