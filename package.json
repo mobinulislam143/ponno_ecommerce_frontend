@@ -19,6 +19,7 @@
     "daisyui": "^4.10.1",
     "emailjs": "^4.0.3",
     "form-data": "^4.0.0",
+    "framer-motion": "^11.3.28",
     "html-react-parser": "^5.1.8",
     "js-cookie": "^3.0.5",
     "lightgallery": "^2.7.2",

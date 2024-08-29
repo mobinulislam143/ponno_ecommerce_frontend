@@ -1,21 +1,40 @@
 import React from "react"
 import { FaPhoneVolume } from "react-icons/fa6";
-import { MdEmail    } from "react-icons/md";
+import { MdEmail } from "react-icons/md";
+import { motion } from 'framer-motion';
+
 
 const Safety = () => {
+  const scrollAnimationVariants = {
+    hidden: { opacity: 0, y: 50 },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+  };
   return (
     <div className="container mx-auto">
       <div className=" bg-slate-100 py-4 my-5 lg:px-5">
-        <div className="text-center pb-6 border-b-2">
-          <img src='safety.png' className="mx-auto w-40"  />
-          <h3 className="text-3xl font-bold text-gray-800">Stay safe at Ponno Sheba</h3>
-          <p className="text-slate-500">At Ponno Sheba site, we are 100% committed to ensuring your experience on our platform is as safe as possible.</p>
-          <p className="text-slate-500">Here are some tips on how to stay safe while shopping on Ponno Sheba site.</p>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={scrollAnimationVariants}
+          viewport={{ once: false, amount: 0.2 }}
+        >
+          <div className="text-center pb-6 border-b-2">
+            <img src='safety.png' className="mx-auto w-40" />
+            <h3 className="text-3xl font-bold text-gray-800">Stay safe at Ponno Sheba</h3>
+            <p className="text-slate-500">At Ponno Sheba site, we are 100% committed to ensuring your experience on our platform is as safe as possible.</p>
+            <p className="text-slate-500">Here are some tips on how to stay safe while shopping on Ponno Sheba site.</p>
 
-        </div>
+          </div>
+        </motion.div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={scrollAnimationVariants}
+          viewport={{ once: false, amount: 0.2 }}
+        >
         <div className="py-6 border-b-2">
           <div className="text-center pb-6 ">
-            <img src='lock.png' className="mx-auto w-40"  />
+            <img src='lock.png' className="mx-auto w-40" />
           </div>
           <h3 className="text-center text-3xl font-bold text-gray-800">General safety advice</h3>
 
@@ -40,14 +59,20 @@ const Safety = () => {
 
 
         </div>
-
+        </motion.div>
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={scrollAnimationVariants}
+          viewport={{ once: false, amount: 0.2 }}
+        >
         <div className="py-6 border-b-2">
-            <div className="text-center pb-6">
-              <img src='alert.png' className="mx-auto w-40"  />
-            </div>
-            <h3 className="text-center text-3xl font-bold text-gray-800">Beware of scams and frauds</h3>
+          <div className="text-center pb-6">
+            <img src='alert.png' className="mx-auto w-40" />
+          </div>
+          <h3 className="text-center text-3xl font-bold text-gray-800">Beware of scams and frauds</h3>
 
-            <div className="lg:grid grid-cols-2 gap-5 gap-y-7 lg:px-10 py-8">
+          <div className="lg:grid grid-cols-2 gap-5 gap-y-7 lg:px-10 py-8">
             <div className="sm:my-4">
               <h3 className="text-lg font-bold text-gray-800">Fake payment services</h3>
               <p className="text-slate-500">Ponno Sheba does not provide any kind of payment scheme or security. Report any emails claiming to offer such services. Avoid using online payment services or escrow sites unless you are 100% sure of their authenticity.</p>
@@ -70,11 +95,20 @@ const Safety = () => {
             </div>
           </div>
         </div>
-        </div>
+        </motion.div>
+
+      </div>
+
+      <motion.div
+          initial="hidden"
+          whileInView="visible"
+          variants={scrollAnimationVariants}
+          viewport={{ once: false, amount: 0.2 }}
+        >
         <div className="bg-slate-100 py-4 my-5 lg:px-5 ">
           <h3 className="text-3xl text-center font-bold text-gray-800">Need Help?</h3>
           <p className="text-slate-500 text-center pt-3">Daily from 10:00 am to 08:00 pm.</p>
-        
+
           <div className="flex gap-6 justify-center relative">
             <div className="flex-1 text-center">
               <h3 className="text-2xl font-bold flex items-center justify-center gap-3"><span className="text-amber-500 text-3xl"><FaPhoneVolume /></span><span className="text-gray-700">Call me</span></h3>
@@ -82,15 +116,17 @@ const Safety = () => {
 
             </div>
             <div className="flex-1 text-center relative">
-              <h3 className="text-2xl font-bold flex items-center justify-center gap-3"><span className="text-amber-500 text-3xl"><MdEmail  /></span><span className="text-gray-700">Email</span></h3>
+              <h3 className="text-2xl font-bold flex items-center justify-center gap-3"><span className="text-amber-500 text-3xl"><MdEmail /></span><span className="text-gray-700">Email</span></h3>
               <p className="text-slate-500 text-center pt-3"><span className="text-lg">mobinulislammahi@gmail.com</span></p>
 
             </div>
             <div className="absolute hidden lg:flex inset-y-0 left-1/2 transform -translate-x-1/2 w-0.5 bg-gray-300"></div>
           </div>
 
-          
+
         </div>
+      </motion.div>
+
     </div>
   )
 }

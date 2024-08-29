@@ -5,9 +5,17 @@ import { AllBrandRequest, AllCategoryRequest, AllDivisionRequest, AllSubCategory
 import { getAllDistrict, getAllDivision, getAllSubCategory } from '../../redux/state-slice/product-slice';
 import { ToastContainer } from 'react-toastify';
 import { ErrorToast } from '../helper/FormHelper';
+import { motion } from 'framer-motion';
+
 
 
 function PostAds(props) {
+
+    const scrollAnimationVariants = {
+        hidden: { opacity: 0, y: 50 },
+        visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
+    };
+
     const [isUploading, setUploading] = useState(false)
     const [imagePreview, setImagePreview] = useState([null, null, null, null, null])
 
@@ -138,13 +146,32 @@ function PostAds(props) {
         
 
     }
+    const fadeIn = {
+        hidden: { opacity: 0 },
+        visible: { opacity: 1, transition: { duration: 0.5 } }
+      };
+      
     
 
     return (
         <div className='container mx-auto'>
             <div className='bg-white p-4 '>
-            <h2 className='text-2xl font-bold mb-4 text-gray-800'>Fill in the Product Details..</h2>
+            <motion.h2
+                className='text-2xl font-bold mb-4 text-gray-800'
+                variants={fadeIn}
+                initial="hidden"
+                animate="visible"
+                viewport={{ once: true }}
+                >
+                Fill in the Product Details..
+                </motion.h2>
             <hr/>
+            <motion.div
+                initial="hidden"
+                whileInView="visible"
+                variants={scrollAnimationVariants}
+                viewport={{ once: false, amount: 0.2 }}
+            >
             <div className='form text-slate-600 lg:ml-44 my-7'>
 
                 <div className='mb-4'>
@@ -382,6 +409,7 @@ function PostAds(props) {
 
                     <NavLink onClick={handleSubmit} className='btn bg-pink-600 rounded-lg text-1xl border-0 text-white w-full hover:bg-amber-500 transition-all'>Submit</NavLink>
             </div>
+            </motion.div>
 
             </div>   
             <ToastContainer position='top-right'/>         

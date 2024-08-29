@@ -175,43 +175,14 @@ export async function getDistrictRequest(division) {
 }
 
 
-export async function PostAdsRequest({
-    title,
-    shortDes,
-    price,
-    discount,
-    discountPrice,
-    stock,
-    remark,
-    negotiable,
-    categoryID,
-    productDetailID,
-    subcategoryID,
-    brandID,
-    userID
-}){
+export async function PostAdsRequest(postBody){
     store.dispatch(showLoader())
     let url = `/api/createUserProduct`
-
-    let postBody = {
-        title: title,
-        shortDes: shortDes,
-        price: price,
-        discount: discount,
-        discountPrice: discountPrice,
-        stock: stock,
-        remark: remark,
-        negotiable: negotiable,
-        categoryID: categoryID,
-        productDetailID: productDetailID, 
-        subcategoryID: subcategoryID,
-        brandID: brandID,
-        userID: userID, 
-    }
     try{
         const res = await axios.post(url, postBody,  {
             headers: {
-                'token': Cookie.get('token')
+                'token': Cookie.get('token'),
+                'Content-Type': 'application/json'
             }
         } )
         if(res.status === 200){
@@ -342,6 +313,26 @@ export async function UserAdsRequest(){
         store.dispatch(hideLoader())
     }
 }
+export async function EditProfileRequest(postBody){
+    store.dispatch(showLoader())
+    let url = `/api/updateProfile`
+    try{
+        const res = await axios.post(url, postBody,  {
+            headers: {
+                'token': Cookie.get('token'),
+            }
+        } )
+        if(res.status === 200){
+            store.dispatch(hideLoader())
+            console.log(res.data)
+            store.dispatch(getProfile(res.data['data']))
+        }
+    }catch(e){
+        console.log(e.toString());
+        store.dispatch(hideLoader())
+    }
+}
+
 
 export async function LogoutRequest(){
     store.dispatch(showLoader())

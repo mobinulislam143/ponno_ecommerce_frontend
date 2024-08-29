@@ -11,11 +11,14 @@ export const productSlice = createSlice({
         AllDivision: [],
         AllDistrict: [],
         ProductDetails: [],
+        // UserProduct
+       
         loading: false,
         error: null,
         ProductComment: []
     },
     reducers: {
+
         getAllProduct: (state, action) => {
             state.AllProduct = action.payload;
             state.loading = false;
