@@ -5,12 +5,14 @@ import {  getAllBrand, getAllCategory, getAllDistrict, getAllDivision, getAllPro
 import { ErrorToast, SuccessToast, getEmail, setEmail, setToken } from "../helper/FormHelper";
 import Cookie from 'js-cookie'
 import { getProfile, getUserProduct } from "../../redux/state-slice/user-slice";
+
+const BaseUrl = "https://mern-ecommerce-ponnosheba-backend.vercel.app/"
  
 
 //user api
 export async function RegistrationRequest(email, firstName,lastName,age,mobile,address, password, confirmPassword){
     store.dispatch(showLoader())
-    let url = `/api/registration`
+    let url = `${BaseUrl}/api/registration`
     const postBody = {
         email: email,
         firstName: firstName,
@@ -42,7 +44,7 @@ export async function VerifyEmailRequest(otp){
     store.dispatch(showLoader())
     let email = getEmail()
     console.log(email)
-    let url = `/api/verifyEmail/${email}/${otp}`;
+    let url = `${BaseUrl}/api/verifyEmail/${email}/${otp}`;
     try{
         let res = await axios.post(url)
         console.log(`Response status: ${res.status}`);
@@ -63,7 +65,7 @@ export async function VerifyEmailRequest(otp){
 
 export async function LoginRequest(email, password) {
     store.dispatch(showLoader())
-    const url = `/api/login`;
+    const url = `${BaseUrl}/api/login`;
     const postBody = {
         email: email,
         password: password
@@ -94,7 +96,7 @@ export async function LoginRequest(email, password) {
 
 export async function AllBrandRequest(){
     store.dispatch(showLoader())
-    let url = `/api/getAllBrand`
+    let url = `${BaseUrl}/api/getAllBrand`
     try{
         const res = await axios.get(url)
         if(res.status === 200){
@@ -111,7 +113,7 @@ export async function AllBrandRequest(){
 
 export async function AllCategoryRequest() {
     store.dispatch(showLoader());
-    let url = `/api/getAllCategory`;
+    let url = `${BaseUrl}/api/getAllCategory`;
     try {
         const res = await axios.get(url);
         if (res.status === 200) {
@@ -126,7 +128,7 @@ export async function AllCategoryRequest() {
 
 export async function AllSubCategoryRequest(CategoryId) {
     store.dispatch(showLoader());
-    let url = `/api/getSubCategory/${CategoryId}`;
+    let url = `${BaseUrl}/api/getSubCategory/${CategoryId}`;
     try {
         const res = await axios.get(url);
         if (res.status === 200) {
@@ -143,7 +145,7 @@ export async function AllSubCategoryRequest(CategoryId) {
 
 export async function AllDivisionRequest() {
     store.dispatch(showLoader());
-    let url = `/api/getdivision`;
+    let url = `${BaseUrl}/api/getdivision`;
     try {
         const res = await axios.get(url);
         if (res.status === 200) {
@@ -159,7 +161,7 @@ export async function AllDivisionRequest() {
 
 export async function getDistrictRequest(division) {
     store.dispatch(showLoader());
-    let url = `/api/getdistricts/${division}`;
+    let url = `${BaseUrl}/api/getdistricts/${division}`;
     try {
         const res = await axios.get(url);
         if (res.status === 200) {
@@ -177,7 +179,7 @@ export async function getDistrictRequest(division) {
 
 export async function PostAdsRequest(postBody){
     store.dispatch(showLoader())
-    let url = `/api/createUserProduct`
+    let url = `${BaseUrl}/api/createUserProduct`
     try{
         const res = await axios.post(url, postBody,  {
             headers: {
@@ -201,7 +203,7 @@ export async function PostAdsRequest(postBody){
 
 export async function ListProductByCategoryRequest(CategoryId) {
     // store.dispatch(showLoader()); 
-    let url = `/api/ProductListByCategory/${CategoryId}`;
+    let url = `${BaseUrl}/api/ProductListByCategory/${CategoryId}`;
     try {
         const res = await axios.get(url);
         if  (res.data['status'] === "success") {
@@ -222,7 +224,7 @@ export async function ListProductByCategoryRequest(CategoryId) {
 
 
 export async function AdsDetailsRequest(id) {
-    let url = `/api/product-details/${id}`;
+    let url = `${BaseUrl}/api/product-details/${id}`;
     try {
         const res = await axios.get(url);
         if (res.data['status'] === "success") {
@@ -237,7 +239,7 @@ export async function AdsDetailsRequest(id) {
     }
 }
 export async function getCommentByProductRequest(id) {
-    let url = `/api/getCommentByProduct/${id}`;
+    let url = `${BaseUrl}/api/getCommentByProduct/${id}`;
     try {
         const res = await axios.get(url);
         if (res.status === 200) {
@@ -274,7 +276,7 @@ export async function AllProduct(){
 // user Manage Api
 export async function getProfileRequest(){
     store.dispatch(showLoader())
-    let url = `/api/getProfile`
+    let url = `${BaseUrl}/api/getProfile`
     try{
         const res = await axios.get(url, {
             headers: {
@@ -295,7 +297,7 @@ export async function getProfileRequest(){
 
 export async function UserAdsRequest(){
     store.dispatch(showLoader())
-    let url = `/api/usersProduct`
+    let url = `${BaseUrl}/api/usersProduct`
     try{
         const res = await axios.get(url, {
             headers: {
@@ -315,7 +317,7 @@ export async function UserAdsRequest(){
 }
 export async function EditProfileRequest(postBody){
     store.dispatch(showLoader())
-    let url = `/api/updateProfile`
+    let url = `${BaseUrl}/api/updateProfile`
     try{
         const res = await axios.post(url, postBody,  {
             headers: {
@@ -336,7 +338,7 @@ export async function EditProfileRequest(postBody){
 
 export async function LogoutRequest(){
     store.dispatch(showLoader())
-    let url = `/api/logout`
+    let url = `${BaseUrl}/api/logout`
     try{
         const res = await axios.get(url, {
             headers: {
