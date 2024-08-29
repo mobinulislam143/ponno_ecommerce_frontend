@@ -255,7 +255,7 @@ export async function getCommentByProductRequest(id) {
 
 export async function AllProduct(){
     store.dispatch(showLoader())
-    let url = `api/getallProducts`
+    let url = `${BaseUrl}api/getallProducts`
     try{
         const res = await axios.get(url)
         if(res.status === 200){
