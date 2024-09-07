@@ -1,10 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { EditProfileRequest } from "../APIRequest/APIRequest";
 import { ToastContainer } from 'react-toastify';
 import { ErrorToast, SuccessToast } from "../helper/FormHelper";
 
 
-const EditProfile = () => {
+const EditProfile = ({profile}) => {
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -14,36 +14,47 @@ const EditProfile = () => {
     address: "",
     password: "",
     confirmPassword: "",
-  })
+  });
 
-  const handleChange  = (e) => {
+  useEffect(() => {
+    if (profile) {
+      setFormData({
+        firstName: profile.firstName || "",
+        lastName: profile.lastName || "",
+        age: profile.age || "",
+        mobile: profile.mobile || "",
+        address: profile.address || "",
+        password: "",
+        confirmPassword: "",
+      });
+    }
+  }, [profile]); 
+  const handleChange = (e) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
-    })
-  }
-
-  
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-   try{
-    if (formData.password !== formData.confirmPassword) {
-      ErrorToast("Password does'nt match")
-
-      return;
-    }
-
-    const postBody = { ...formData };
-    delete postBody.confirmPassword;
-
-    await EditProfileRequest(postBody);
-    SuccessToast("Profile Update Successfully.")
-   }catch(e){
-    console.log(e)
-    ErrorToast("Profile can't update")
-   }
+      [e.target.name]: e.target.value,
+    });
   };
 
+  // Handle form submission
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      if (formData.password !== formData.confirmPassword) {
+        ErrorToast("Passwords don't match");
+        return;
+      }
+
+      const postBody = { ...formData };
+      delete postBody.confirmPassword; 
+
+      await EditProfileRequest(postBody); 
+      SuccessToast("Profile updated successfully");
+    } catch (e) {
+      console.error(e);
+      ErrorToast("Profile update failed");
+    }
+  };
 
   return (
     <div className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-lg mt-10">

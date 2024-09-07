@@ -1,7 +1,7 @@
 import axios from "axios";
 import store from '../../redux/store/store'
 import { hideLoader, showLoader } from "../../redux/state-slice/Setting-slice";
-import {  getAllBrand, getAllCategory, getAllDistrict, getAllDivision, getAllProduct,getAllProductByCategory, getAllSubCategory, getCommentByProduct, getProductDetails } from "../../redux/state-slice/product-slice";
+import {  getAllBrand, getAllCategory, getAllDistrict, getAllDivision, getAllProduct,getAllProductByCategory, getAllSubCategory, getCommentByProduct, getProductDetails, setError, setLoading } from "../../redux/state-slice/product-slice";
 import { ErrorToast, SuccessToast, getEmail, setEmail, setToken } from "../helper/FormHelper";
 import Cookie from 'js-cookie'
 import { getProfile, getUserProduct } from "../../redux/state-slice/user-slice";
@@ -222,6 +222,7 @@ export async function ListProductByCategoryRequest(CategoryId) {
 }
 
 
+
 export async function AdsDetailsRequest(id) {
     let url = `${BaseUrl}/api/product-details/${id}`;
     try {
@@ -237,6 +238,9 @@ export async function AdsDetailsRequest(id) {
         console.log(e.toString());
     }
 }
+
+
+
 export async function getCommentByProductRequest(id) {
     let url = `${BaseUrl}/api/getCommentByProduct/${id}`;
     try {
@@ -294,6 +298,31 @@ export async function getProfileRequest(){
     }
 }
 
+
+
+export async function updateProfileImageRequest(imageData){
+    store.dispatch(showLoader())
+    
+    const url = `${BaseUrl}/api/updateProfileImage`; 
+    const formData = new FormData();
+    formData.append('image', imageData);
+  
+    try {
+        const res = await axios.post(url, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data',
+                'token': Cookie.get('token')
+            }
+        })
+        if (res.data['status'] === "success") {
+            store.dispatch(hideLoader())
+            store.dispatch(getProfile(res.data['data']))
+        }
+    } catch (e) {
+        console.log(e.toString());
+        store.dispatch(hideLoader())
+    }
+}
 export async function UserAdsRequest(){
     store.dispatch(showLoader())
     let url = `${BaseUrl}/api/usersProduct`

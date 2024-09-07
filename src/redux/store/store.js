@@ -9,7 +9,7 @@ const store = configureStore({
         products: productReducer,
         user: userReducer
     },
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat()
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware(),
 });
 
 export default store;

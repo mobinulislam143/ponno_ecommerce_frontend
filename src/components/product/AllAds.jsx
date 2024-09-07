@@ -279,7 +279,7 @@ function AllAds({ products }) {
                                 viewport={{ once: false, amount: 0.2 }}
                                 key={index}
                             >
-                                <Link to={`/ads-details/${item['_id']}`} key={index}>
+                                <Link to={`/ads-details/${item['_id']}`}>
                                     <div className='mt-9 w-full p-2 rounded-md border-2 hover:shadow-lg shadow-custom-pink border-cyan-500 cursor-pointer bg-purple-50'>
                                         <div className='flex gap-3'>
                                             <img src={item.details.img2} className='w-24 hover:scale-110 transition-all' alt='img' />

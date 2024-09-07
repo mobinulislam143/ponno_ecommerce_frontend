@@ -10,7 +10,7 @@ export const productSlice = createSlice({
         AllBrand: [],
         AllDivision: [],
         AllDistrict: [],
-        ProductDetails: [],
+        ProductDetails: null,
         // UserProduct
        
         loading: false,

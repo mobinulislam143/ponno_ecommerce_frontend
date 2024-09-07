@@ -3,8 +3,8 @@ import MasterLayout from '../components/MasterLayout/MasterLayout';
 import LazyLoader from '../components/MasterLayout/LazyLoader';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { AdsDetailsRequest, AllCategoryRequest, getCommentByProductRequest } from '../components/APIRequest/APIRequest';
-import { getProductDetails } from '../redux/state-slice/product-slice'; // Ensure the correct path
+import { AdsDetailsRequest, getCommentByProductRequest } from '../components/APIRequest/APIRequest';
+import { getProductDetails } from '../redux/state-slice/product-slice';
 
 const AdsDetails = lazy(() => import('../components/product/AdsDetails'));
 
@@ -13,18 +13,15 @@ function AdsDetailPage() {
     const dispatch = useDispatch();
 
     const ProductDetails = useSelector(state => state.products.ProductDetails);
-
-    
     const status = useSelector(state => state.products.status);
     const error = useSelector(state => state.products.error);
 
-
     useEffect(() => {
         if (id) {
-            AdsDetailsRequest(id);
-            getCommentByProductRequest(id)
+            AdsDetailsRequest(id); // Dispatch the request
+            getCommentByProductRequest(id); // Dispatch the comments request
         }
-    }, [id]);
+    }, [ id]);
 
     if (status === 'loading') {
         return <LazyLoader />;
