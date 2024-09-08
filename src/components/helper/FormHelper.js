@@ -3,6 +3,8 @@ import { toast } from 'react-toastify';
 
 const EmailRegx = /\S+@\S+\.\S+/;
 const MobileRegx = /(^(\+88|0088)?(01){1}[3456789]{1}(\d){8})$/;
+import Cookie from 'js-cookie'
+
 
 class FormHelper {
     IsEmpty(value) {
@@ -22,11 +24,13 @@ class FormHelper {
     }
 
     setToken(token) {
-        localStorage.setItem('token', token);
+        Cookie.set('token', token);
+        localStorage.setItem('token', token)
     }
-
+    
     getToken() {
-        return localStorage.getItem('token');
+        return Cookie.get('token'), localStorage.getItem('token');
+        
     }
 
     IsEmail(value) {

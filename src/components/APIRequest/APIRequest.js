@@ -277,26 +277,35 @@ export async function AllProduct(){
 
 
 // user Manage Api
-export async function getProfileRequest(){
-    store.dispatch(showLoader())
-    let url = `${BaseUrl}/api/getProfile`
-    try{
-        const res = await axios.get(url, {
-            headers: {
-                'token': Cookie.get('token')
-            }
-        })
-        if(res.data['status'] === "success"){
-            store.dispatch(hideLoader())
-            console.log(res.data['data'])
-            
-            store.dispatch(getProfile(res.data['data']))
+
+export async function getProfileRequest() {
+    store.dispatch(showLoader());
+    const token = Cookie.get('token'); // Ensure you have this token in your cookies
+    console.log('Token:', token);
+  
+    let url = `${BaseUrl}/api/getProfile`;
+  
+    try {
+      const res = await axios.get(url, {
+        headers: {
+            'token': Cookie.get('token')
         }
-    }catch(e){
-        console.log(e.toString());
-        store.dispatch(hideLoader())
+      });
+  
+      console.log('Response Data:', res.data);
+      if (res.data.status === 'success') {
+        store.dispatch(hideLoader());
+        store.dispatch(getProfile(res.data.data)); // Update Redux state with profile data
+      } else {
+        console.error('Unexpected response status:', res.data.status);
+        store.dispatch(hideLoader());
+      }
+    } catch (e) {
+      console.error('Error fetching profile:', e.response?.data || e.message || e);
+      store.dispatch(hideLoader());
     }
-}
+  }
+  
 
 
 
