@@ -309,29 +309,34 @@ export async function getProfileRequest() {
 
 
 
-export async function updateProfileImageRequest(imageData){
-    store.dispatch(showLoader())
+
+  export async function updateProfileImageRequest(imageData) {
+    store.dispatch(showLoader());
     
-    const url = `${BaseUrl}/api/updateProfileImage`; 
+    const url = `${BaseUrl}/api/updateProfileImage`;
     const formData = new FormData();
     formData.append('image', imageData);
   
     try {
-        const res = await axios.post(url, formData, {
-            headers: {
-                'Content-Type': 'multipart/form-data',
-                'token': Cookie.get('token')
-            }
-        })
-        if (res.data['status'] === "success") {
-            store.dispatch(hideLoader())
-            store.dispatch(getProfile(res.data['data']))
+      const res = await axios.post(url, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+          'token': Cookie.get('token')
         }
+      });
+  
+      if (res.data.status === "success") {
+        store.dispatch(hideLoader());
+        store.dispatch(getProfile(res.data.data));
+      } else {
+        console.error('API response status:', res.data.status);
+        store.dispatch(hideLoader());
+      }
     } catch (e) {
-        console.log(e.toString());
-        store.dispatch(hideLoader())
+      console.error('Error uploading image:', e);
+      store.dispatch(hideLoader());
     }
-}
+  }
 
 
 

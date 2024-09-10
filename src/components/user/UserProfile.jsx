@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { FaBirthdayCake, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import { ErrorToast, SuccessToast } from "../helper/FormHelper";
 import { updateProfileImageRequest } from "../APIRequest/APIRequest";
@@ -6,9 +6,14 @@ import { ToastContainer } from "react-toastify";
 
 const UserProfile = ({ profile }) => {
   const [imagePreview, setImagePreview] = useState(null);
-  const [imageSrc, setImageSrc] = useState(profile?.profileImg || "");
+  const [imageSrc, setImageSrc] = useState(profile?.profileImg || ""); // Initialize with profile image
   const [uploading, setUploading] = useState(false);
   const fileInputRef = useRef(null);
+
+  // Update imageSrc when profile changes
+  useEffect(() => {
+    setImageSrc(profile?.profileImg || "");
+  }, [profile]);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -32,7 +37,7 @@ const UserProfile = ({ profile }) => {
 
         if (success) {
           SuccessToast("Image Uploaded Successfully...");
-          setImageSrc(URL.createObjectURL(imageData)); 
+          setImageSrc(URL.createObjectURL(imageData)); // Update the image URL
         } 
       } else {
         ErrorToast("No image selected");
@@ -51,7 +56,7 @@ const UserProfile = ({ profile }) => {
         <div className="w-36">
           <label className="font-semibold" htmlFor="imageInput">
             <img
-              src={imageSrc}
+              src={imagePreview || imageSrc}
               className="h-36 w-36 cursor-pointer my-3 hover:opacity-75 rounded-full transition-all"
               alt="Profile"
             />
