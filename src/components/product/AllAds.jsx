@@ -8,16 +8,14 @@ import ProductSlider from './ProductSlider';
 import './AllAds.css';
 import { AllBrandRequest, AllCategoryRequest, AllDivisionRequest, AllSubCategoryRequest, AllProduct } from '../APIRequest/APIRequest';
 import { useSelector } from 'react-redux';
-import { motion } from 'framer-motion';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 
 
 function AllAds({ products }) {
 
-    const scrollAnimationVariants = {
-        hidden: { opacity: 0, y: 50 },
-        visible: { opacity: 1, y: 0, transition: { duration: 0.8 } }
-    };
+ 
 
 
     const [subCategories, setSubCategories] = useState([]);
@@ -33,10 +31,17 @@ function AllAds({ products }) {
             }catch(e){
                 console.error(e.toString());
             }
+           
         }
         fetchData()
     
      },[])
+     useEffect(() => {
+        AOS.init({
+          duration: 1000, // Duration of the animation
+          once: true,     // Whether animation should happen only once
+        });
+      }, []);
 
     const AllCategoryList = useSelector((state) => state.products.AllCategory);
     const AllBrandList = useSelector((state) => state.products.AllBrand);
@@ -56,13 +61,8 @@ function AllAds({ products }) {
 
         <div className="container mx-auto">
             <div className='bg-white p-6 rounded-lg'>
-                {/* <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    variants={scrollAnimationVariants}
-                    viewport={{ once: false, amount: 0.2 }}
-                > */}
-                <div className='bg-purple-700 lg:flex justify-between items-center p-5 rounded-lg'>
+            
+                <div data-aos="fade-up" className='bg-purple-700 lg:flex justify-between items-center p-5 rounded-lg'>
 
                     <p className='px-2 rounded-2xl bg-amber-500 text-black'>Get Safe Browser in your Location!</p>
                     <div>
@@ -73,15 +73,9 @@ function AllAds({ products }) {
                         </span>
                     </div>
                 </div>
-                {/* </motion.div> */}
-
-                {/* <motion.div
-                    initial="hidden"
-                    whileInView="visible"
-                    variants={scrollAnimationVariants}
-                    viewport={{ once: false, amount: 0.2 }}
-                > */}
-                <div className='pt-5 lg:flex justify-between mb-2'>
+               
+                
+                <div className='pt-5 lg:flex justify-between mb-2' data-aos="fade-up">
                     <h1 className='text-lg flex items-center gap-2 text-black'><TbCategoryPlus />Category: All</h1>
                     <h1 className='text-lg flex items-center gap-2 text-black'><MdMyLocation />Location: Cumilla</h1>
                     
@@ -91,16 +85,11 @@ function AllAds({ products }) {
                     </label>
                 </div>
                 <hr/>
-                {/* </motion.div> */}
+          
 
                 <div className='grid lg:grid-cols-4 sm:grid-cols-1 mt-4 gap-4 '>
-                    <div className='border-r-2 px-2'>
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            variants={scrollAnimationVariants}
-                            viewport={{ once: false, amount: 0.2 }}
-                        >
+                    <div data-aos="fade-right" className='border-r-2 px-2'>
+                        
                         <div className='flex items-center justify-between my-2'>
                             <p className="text-sm text-slate-600">Sort result by...</p>
                             <NavLink to={'/all-ads'} className='btn'>Clear Filter</NavLink>
@@ -154,15 +143,10 @@ function AllAds({ products }) {
                             <input min={0} max={500000} step={500} className="range range-info" type='range' />
                         </div>
                         <hr/>
-                        </motion.div>
+                        
 
 
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            variants={scrollAnimationVariants}
-                            viewport={{ once: false, amount: 0.2 }}
-                        >
+                        
                         <div tabIndex={0} className="collapse collapse-arrow hover:bg-slate-100 transition-all my-4">
                             <input type='checkbox' />
                             <div className="collapse-title bg-cyan-400 text-white font-semibold ">Brand</div>
@@ -202,14 +186,9 @@ function AllAds({ products }) {
                             </div>
                         </div>
                         <hr/>
-                        </motion.div>
+                        
 
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            variants={scrollAnimationVariants}
-                            viewport={{ once: false, amount: 0.2 }}
-                        >
+                        
                         <div className="collapse collapse-arrow hover:bg-slate-100 transition-all my-4">
                             <input type="checkbox" id="main-collapse" />
                             <label htmlFor="main-collapse" className="collapse-title  bg-cyan-400 text-white">
@@ -250,15 +229,10 @@ function AllAds({ products }) {
                             </div>
                         </div>
                         <hr/>
-                        </motion.div>
+                        
                     </div>
                     <div className='lg:ml-4 lg:mt-4 col-span-2'>
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            variants={scrollAnimationVariants}
-                            viewport={{ once: false, amount: 0.2 }}
-                        >
+                        
                         <span className='text-slate-500 font-semibold'>
                             <NavLink to={'/'}>Home</NavLink> &gt; 
                             <NavLink to={'/all-ads'}>All Ads</NavLink>  
@@ -267,20 +241,14 @@ function AllAds({ products }) {
                         <h1 className='font-bold'>Mobiles and Accessories for Sale in Bangladesh</h1>
                         <p className='text-slate-600 text-sm'>Showing 1-25 of {products.length} ads</p>
 
-                        <ProductSlider/>
-                        </motion.div>
+                        <ProductSlider />
+                        
 
                         {products && Array.isArray(products) && products.length > 0 ? (
                             products.map((item, index) => (
-                                <motion.div
-                                initial="hidden"
-                                whileInView="visible"
-                                variants={scrollAnimationVariants}
-                                viewport={{ once: false, amount: 0.2 }}
-                                key={index}
-                            >
+                                
                                 <Link to={`/ads-details/${item['_id']}`}>
-                                    <div className='mt-9 w-full p-2 rounded-md border-2 hover:shadow-lg shadow-custom-pink border-cyan-500 cursor-pointer bg-purple-50'>
+                                    <div  data-aos="fade-up" className='mt-9 w-full p-2 rounded-md border-2 hover:shadow-lg shadow-custom-pink border-cyan-500 cursor-pointer bg-purple-50'>
                                         <div className='flex gap-3'>
                                             <img src={item.details.img2} className='w-24 hover:scale-110 transition-all' alt='img' />
                                             <div className='w-full'>
@@ -293,7 +261,7 @@ function AllAds({ products }) {
                                         </div>
                                     </div>
                                 </Link>
-                                </motion.div>
+                                
                             ))
                         ) : (
                             <p className='pt-10'>Sorry, there are no products for your requirement.</p>
@@ -314,13 +282,8 @@ function AllAds({ products }) {
                     </div>
 
                     <div>
-                        <motion.div
-                            initial="hidden"
-                            whileInView="visible"
-                            variants={scrollAnimationVariants}
-                            viewport={{ once: false, amount: 0.2 }}
-                        >
-                        <div className='border-2 py-3 rounded-lg'>
+                        
+                        <div className='border-2 py-3 rounded-lg overflow-x-hidden' data-aos="fade-left">
                             <div className="px-2 py-3">
                                 <span className='flex items-center gap-3'>
                                     <img src='https://i.postimg.cc/C1GcmJHL/safety.jpg' className='w-6' alt='safety'/>
@@ -332,7 +295,7 @@ function AllAds({ products }) {
                                 </ul>
                             </div>
                         </div>
-                        </motion.div>
+                        
                     </div>
                 </div>
             </div>

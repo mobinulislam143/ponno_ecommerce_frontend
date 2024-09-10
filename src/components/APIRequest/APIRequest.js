@@ -64,7 +64,7 @@ export async function VerifyEmailRequest(otp){
 
 export async function LoginRequest(email, password) {
     store.dispatch(showLoader())
-    const url = `${BaseUrl}/api/login`;
+    const url = `api/login`;
     const postBody = {
         email: email,
         password: password
@@ -283,7 +283,7 @@ export async function getProfileRequest() {
     const token = Cookie.get('token'); // Ensure you have this token in your cookies
     console.log('Token:', token);
   
-    let url = `${BaseUrl}/api/getProfile`;
+    let url = `api/getProfile`;
   
     try {
       const res = await axios.get(url, {
@@ -312,7 +312,7 @@ export async function getProfileRequest() {
 export async function updateProfileImageRequest(imageData){
     store.dispatch(showLoader())
     
-    const url = `${BaseUrl}/api/updateProfileImage`; 
+    const url = `api/updateProfileImage`; 
     const formData = new FormData();
     formData.append('image', imageData);
   
@@ -332,6 +332,9 @@ export async function updateProfileImageRequest(imageData){
         store.dispatch(hideLoader())
     }
 }
+
+
+
 export async function UserAdsRequest(){
     store.dispatch(showLoader())
     let url = `${BaseUrl}/api/usersProduct`

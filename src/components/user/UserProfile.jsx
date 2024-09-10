@@ -1,48 +1,45 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { FaBirthdayCake, FaPhone, FaMapMarkerAlt } from "react-icons/fa";
 import { ErrorToast, SuccessToast } from "../helper/FormHelper";
 import { updateProfileImageRequest } from "../APIRequest/APIRequest";
 import { ToastContainer } from "react-toastify";
 
-const UserProfile = ({profile}) => {
+const UserProfile = ({ profile }) => {
   const [imagePreview, setImagePreview] = useState(null);
-  
-
-  const [imageSrc, setImageSrc] = useState(profile?.profileImg || profile.profileImg);
-
-  const [uploading, setUploading] = useState(false)
-
+  const [imageSrc, setImageSrc] = useState(profile?.profileImg || "");
+  const [uploading, setUploading] = useState(false);
+  const fileInputRef = useRef(null);
 
   const handleImageChange = (e) => {
     const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.onload = () => {
-      setImagePreview(reader.result);
-      setImageSrc(reader.result);
-    };
-    reader.readAsDataURL(file);
+    if (file) {
+      const reader = new FileReader();
+      reader.onload = () => {
+        setImagePreview(reader.result);
+        setImageSrc(reader.result);
+      };
+      reader.readAsDataURL(file);
+    }
   };
 
   const ImgUpload = async () => {
     try {
-      const fileInput = document.getElementById("imageInput");
-      const imageData = fileInput.files[0];
+      const imageData = fileInputRef.current?.files[0];
 
       if (imageData) {
         setUploading(true);
         const success = await updateProfileImageRequest(imageData);
 
         if (success) {
-          SuccessToast("Image Upload Successfully...");
+          SuccessToast("Image Uploaded Successfully...");
           setImageSrc(URL.createObjectURL(imageData)); 
         } 
       } else {
-        console.log("Image cannot be uploaded");
-        ErrorToast("Something went wrong");
+        ErrorToast("No image selected");
       }
     } catch (e) {
       ErrorToast("Image Upload Failed");
-      console.log("Error uploading profile image:", e);
+      console.error("Error uploading profile image:", e);
     } finally {
       setUploading(false); 
     }
@@ -64,31 +61,19 @@ const UserProfile = ({profile}) => {
             type="file"
             accept="image/*"
             className="hidden"
+            ref={fileInputRef}
             onChange={handleImageChange}
           />
         </div>
-        {uploading ? (
         <button 
-          className="btn my-3 px-5 py-2 text-white bg-gray-500 font-bold rounded-full transition-transform transform hover:scale-105 focus:outline-none disabled"
-          disabled // Disable button while uploading
+          onClick={ImgUpload}
+          className={`btn my-3 px-5 py-2 text-white font-bold rounded-full transition-transform transform hover:scale-105 focus:outline-none ${uploading ? 'bg-gray-500' : 'bg-gradient-to-r from-pink-600 to-yellow-400'}`}
+          disabled={uploading}
           style={{
             boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)'
           }}>
-          Uploading...
+          {uploading ? "Uploading..." : "Update"}
         </button>
-      ) : (
-        <button 
-          onClick={ImgUpload} 
-          className="btn my-3 px-5 py-2 text-white font-bold rounded-full transition-transform transform hover:scale-105 focus:outline-none"
-          style={{
-            background: 'linear-gradient(107deg, rgb(244, 17, 113), rgb(253, 238, 10))',
-            boxShadow: '0 4px 10px rgba(0, 0, 0, 0.2)'
-          }}>
-          Update
-        </button>
-      )}
-       
-
       </div>
       <div className="py-5">
         <h3 className="text-4xl font-bold mb-5 text-black">Hi!! {profile.firstName} {profile.lastName}</h3>
