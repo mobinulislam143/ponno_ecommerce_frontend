@@ -90,7 +90,7 @@ function Home() {
                         {loading ? (
                             <CategorySkeleton /> // Show skeleton when loading
                         ) : AllCategoryList && AllCategoryList.length > 0 ? (
-                            <div className='grid lg:grid-cols-4 md:grid-cols-3 gap-5 text-slate-600 items-center sm:grid-cols-2'>
+                            <div className='grid lg:grid-cols-4 md:grid-cols-3 gap-5 text-slate-600 items-center grid-cols-2'>
                             {AllCategoryList.map((item, i) => (
                                 <Link data-aos="fade-up" key={i} to={`/by-category/${item['_id']}`} className='hover:bg-slate-50 p-2 rounded-md transition-all'>
                                 <div className='flex items-end gap-1'>
