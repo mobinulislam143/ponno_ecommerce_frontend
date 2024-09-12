@@ -176,6 +176,7 @@ function PostAds(props) {
 
                 <div className='mb-4'>
                     <label className='font-semibold' htmlFor='title'>Product Name</label>
+                    
                     <input ref={(input) => titleRef = input} className='w-full rounded-md h-9 my-2 px-4 border border-gray-300 bg-gray-50' placeholder='Product Title' id='title' />
                 </div>
                 <div className='mb-4'>

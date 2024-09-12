@@ -17,7 +17,7 @@ function MasterLayout(props) {
         <>
             <div className='relative'>
                 <ScrollToTop/>
-                <div className="header bg-pink-700 text-white py-3 shadow-lg">
+                <div className="header bg-bg_primary text-white py-3 shadow-lg">
                     <div className="container mx-auto flex flex-col lg:flex-row justify-between items-center">
                         <div className="flex items-center gap-2 text-sm">
                             <HiMail className="text-lg" />
@@ -47,19 +47,19 @@ function MasterLayout(props) {
                         <div className="hidden lg:flex flex-grow items-center justify-end gap-3">
                         <NavLink
                             to="/all-ads"
-                            className="btn text-lg bg-amber-500 px-4 py-2 text-black rounded-full hover:bg-pink-700 hover:text-white transition-all flex items-center border-0 gap-2"
+                            className="btn text-lg bg-bg_primary focus:bg-bg_secondary px-4 py-2 text-white rounded-full hover:bg-bg_primary_hover hover:text-white transition-all flex items-center border-0 gap-2"
                         >
                             <MdProductionQuantityLimits className="text-xl" /> All Ads
                         </NavLink>
                         <NavLink
                             to="/post-ads"
-                            className="btn text-lg bg-amber-500 px-4 py-2 text-black rounded-full hover:bg-pink-700 hover:text-white transition-all flex items-center border-0 gap-2"
+                            className="btn text-lg bg-bg_primary focus:bg-bg_secondary px-4 py-2 text-white rounded-full hover:bg-bg_primary_hover hover:text-white transition-all flex items-center border-0 gap-2"
                         >
                             <BsFillSignpostFill className="text-xl" /> Post your Ad
                         </NavLink>
                         <NavLink
                             to={getToken() ? "/user-profile" : "/registration"}
-                            className="btn text-lg bg-amber-500 px-4 py-2 text-black rounded-full hover:bg-pink-700 hover:text-white transition-all flex items-center border-0 gap-2"
+                            className="btn text-lg bg-bg_primary focus:bg-bg_secondary px-4 py-2 text-white rounded-full hover:bg-bg_primary_hover hover:text-white transition-all flex items-center border-0 gap-2"
                         >
                             <RiAccountCircleFill className="text-xl" /> My Account
                         </NavLink>
@@ -92,19 +92,19 @@ function MasterLayout(props) {
                         <div className={`lg:hidden flex flex-col items-center gap-3 mt-2 ease-in-out duration-500 `}>
                         <NavLink
                             to="/all-ads"
-                            className="btn text-lg bg-amber-500 px-4 py-2 text-black rounded-full hover:bg-pink-700 hover:text-white transition-all flex items-center border-0 gap-2"
+                            className="btn text-lg bg-bg_primary px-4 py-2  rounded-full hover:bg-bg_primary_hover text-white transition-all flex items-center border-0 gap-2"
                         >
                             <MdProductionQuantityLimits className="text-xl" /> All Ads
                         </NavLink>
                         <NavLink
                             to="/post-ads"
-                            className="btn text-lg bg-amber-500 px-4 py-2 text-black rounded-full hover:bg-pink-700 hover:text-white transition-all flex items-center border-0 gap-2"
+                            className="btn text-lg bg-bg_primary px-4 py-2  rounded-full hover:bg-bg_primary_hover text-white transition-all flex items-center border-0 gap-2"
                         >
                             <BsFillSignpostFill className="text-xl" /> Post your Ad
                         </NavLink>
                         <NavLink
                             to={getToken() ? "/user-profile" : "/registration"}
-                            className="btn text-lg bg-amber-500 px-4 py-2 text-black rounded-full hover:bg-pink-700 hover:text-white transition-all flex items-center border-0 gap-2"
+                            className="btn text-lg bg-bg_primary px-4 py-2  rounded-full hover:bg-bg_primary_hover text-white transition-all flex items-center border-0 gap-2"
                         >
                             <RiAccountCircleFill className="text-xl" /> My Account
                         </NavLink>
@@ -116,7 +116,7 @@ function MasterLayout(props) {
                     {props.children}
                 </div>
 
-                <div className="footer bg-purple-800 text-white pt-10 pb-12">
+                <div className="footer bg-bg_primary text-white pt-10 pb-12">
                     <div className="container mx-auto grid lg:grid-cols-4 gap-10">
                         <div>
                             <img src="https://i.postimg.cc/0QVwkw90/logo2.png" alt="logo2" className="mb-3" />
@@ -124,22 +124,22 @@ function MasterLayout(props) {
                         </div>
                         <div>
                             <h2 className="font-bold text-xl mb-3">Important Links</h2>
-                            <NavLink to="/" className="block py-1 hover:text-amber-500 transition-all">Home</NavLink>
-                            <NavLink to="/all-ads" className="block py-1 hover:text-amber-500 transition-all">All Ads</NavLink>
-                            <NavLink to="/post-ads" className="block py-1 hover:text-amber-500 transition-all">Post your Ads</NavLink>
-                            <NavLink to="/profile" className="block py-1 hover:text-amber-500 transition-all">My Account</NavLink>
+                            <NavLink to="/" className="block py-1 hover:text-bg_secondary hover:ml-1 transition-all">Home</NavLink>
+                            <NavLink to="/all-ads" className="block py-1 hover:text-bg_secondary hover:ml-1 transition-all">All Ads</NavLink>
+                            <NavLink to="/post-ads" className="block py-1 hover:text-bg_secondary hover:ml-1 transition-all">Post your Ads</NavLink>
+                            <NavLink to="/profile" className="block py-1 hover:text-bg_secondary hover:ml-1 transition-all">My Account</NavLink>
                         </div>
                         <div>
                             <h2 className="font-bold text-xl mb-3">Ponno Sheba</h2>
-                            <NavLink to="/safety-tips" className="block py-1 hover:text-amber-500 transition-all">Safety Tips</NavLink>
-                            <NavLink to="/terms-and-condition" className="block py-1 hover:text-amber-500 transition-all">Terms and Conditions</NavLink>
-                            <NavLink to="/contact" className="block py-1 hover:text-amber-500 transition-all">Contact Us</NavLink>
+                            <NavLink to="/safety-tips" className="block py-1 hover:text-bg_secondary hover:ml-1 transition-all">Safety Tips</NavLink>
+                            <NavLink to="/terms-and-condition" className="block py-1 hover:text-bg_secondary hover:ml-1 transition-all">Terms and Conditions</NavLink>
+                            <NavLink to="/contact" className="block py-1 hover:text-bg_secondary hover:ml-1 transition-all">Contact Us</NavLink>
                         </div>
                         <div>
                             <h2 className="font-bold text-xl mb-3">Newsletter</h2>
                             <p>Sign up and receive the latest tips via email.</p>
-                            <input type="email" placeholder="Your email" className="w-full h-11 px-3 text-purple-800 rounded-md mt-2" />
-                            <button className="btn bg-pink-700 text-white px-5 py-2 mt-4 rounded-lg hover:bg-amber-500 transition-all">Subscribe</button>
+                            <input type="email" placeholder="Your email" className="w-full bg-white h-11 px-3 text-bg_primary rounded-md mt-2 outline-none foucus:outline-none border focus:border-bg_secondary focus:shadow-lg focus:shadow-bg_secondary" />
+                            <button className="btn bg-bg_secondary border-none text-white px-5 py-2 mt-4 rounded-lg hover:bg-bg_secondary_hover transition-all">Subscribe</button>
                         </div>
                     </div>
                     <hr className="mt-10 border-gray-500" />

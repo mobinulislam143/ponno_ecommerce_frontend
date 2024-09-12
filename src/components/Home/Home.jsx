@@ -8,7 +8,7 @@ import { IoMailOpen } from "react-icons/io5";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { TypeAnimation } from 'react-type-animation';
 import { FaArrowAltCircleRight } from "react-icons/fa";
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { AllCategoryRequest, AllProduct, ListProductByCategoryRequest } from '../APIRequest/APIRequest';
 import { useSelector } from 'react-redux';
 import CategorySkeleton from '../skeleton/CategorySkeleton';
@@ -18,10 +18,6 @@ import 'aos/dist/aos.css';
 
 
 function Home() {
-
-
-
-   
 
     useEffect(() => {
         AllCategoryRequest();
@@ -34,6 +30,14 @@ function Home() {
 
 
     const AllCategoryList = useSelector((state) => state.products.AllCategory);
+
+    const [loading, setLoading] = useState(true); 
+
+    useEffect(() => {
+        setTimeout(() => {
+          setLoading(false); 
+        }, 2000); 
+      }, []);
 
     return (
         <>
@@ -60,7 +64,7 @@ function Home() {
                                         <input type='text' className='rounded-md border-0 w-full bg-white h-9 px-2' />
                                     </div>
                                     <div className='pt-5'>
-                                        <NavLink className='btn bg-pink-700  py-2 rounded-2xl border-0 text-white hover:bg-amber-600'>Search by tag</NavLink>
+                                        <NavLink className='btn bg-bg_secondary  py-2 rounded-2xl border-0 text-white hover:bg-bg_secondary_hover'>Search by tag</NavLink>
                                     </div>
                                 </div>
 
@@ -83,36 +87,35 @@ function Home() {
                     <div className='grid lg:grid-cols-4 sm:grid-cols-1 items-center gap-10'>
                         <div className='col-span-3'>
 
-                            {
-                                AllCategoryList !== null ? (
-                                    <div className='grid lg:grid-cols-4 md:grid-cols-3  gap-5 text-slate-600 items-center sm:grid-cols-2 '>
-                                        {AllCategoryList.map((item, i) => {
-                                            return (
-                                                <Link  data-aos="fade-up" key={i} to={`/by-category/${item['_id']}`} className='hover:bg-slate-50 p-2 rounded-md transition-all'>
-                                                    <div className='flex items-end gap-1' >
-                                                        <img src={item.categoryImg} className='w-12' alt='mobile' />
-                                                        <div>
-                                                            <p>{item.categoryName}</p>
-                                                            <p>16 Ads</p>
-                                                        </div>
-                                                    </div>
-                                                </Link>
-                                            )
-                                        })}
+                        {loading ? (
+                            <CategorySkeleton /> // Show skeleton when loading
+                        ) : AllCategoryList && AllCategoryList.length > 0 ? (
+                            <div className='grid lg:grid-cols-4 md:grid-cols-3 gap-5 text-slate-600 items-center sm:grid-cols-2'>
+                            {AllCategoryList.map((item, i) => (
+                                <Link data-aos="fade-up" key={i} to={`/by-category/${item['_id']}`} className='hover:bg-slate-50 p-2 rounded-md transition-all'>
+                                <div className='flex items-end gap-1'>
+                                    <img src={item.categoryImg} className='w-12' alt='category' />
+                                    <div>
+                                    <p>{item.categoryName}</p>
+                                    <p>16 Ads</p>
                                     </div>
-                                ) : (<CategorySkeleton />)
-                            }
-
-
+                                </div>
+                                </Link>
+                            ))}
+                            </div>
+                        ) : (
+                            <p>No categories available</p> // Optionally handle the case where there are no categories
+                        )}
 
 
                         </div>
                         <div >
-                            <div className='mb-9' data-aos="fade-up"
-     data-aos-anchor-placement="center-bottom">
+                            <div className='mb-9' data-aos="fade-up" data-aos-anchor-placement="center-bottom">
 
                                 <h1 className='font-semibold text-lg text-gray-800'>GET ACCESS OVER</h1>
-                                <h2 className='text-3xl text-pink-600 font-bold'><span className='text-purple-600 text-3xl'>
+                                <h2 className='text-3xl text-bg_secondary font-bold'>
+                                    
+                                    <span className='text-bg_primary text-3xl'>
                                     <TypeAnimation
                                         sequence={[
                                             'Elite',
@@ -135,7 +138,7 @@ function Home() {
                             <div data-aos="fade-bottom">
 
                                 <h1 className='font-semibold text-lg text-gray-800'>CONNECT OVER</h1>
-                                <h2 className='text-3xl text-pink-600 font-bold'><span className='text-purple-600'>
+                                <h2 className='text-3xl text-bg_secondary font-bold'><span className='text-bg_primary'>
                                     <TypeAnimation
                                         sequence={[
                                             'Expert',
@@ -164,7 +167,7 @@ function Home() {
                                 <h2 className='text-2xl font-bold mb-4 text-gray-700'>Experts Agent</h2>
 
                                 <p className='text-slate-600'>If you want to sell any of your products then you can now. One of the easiest and quickest works</p>
-                                <NavLink className='btn bg-amber-400 px-5 py-0 rounded-2xl mt-2 hover:bg-pink-600 text-white transition-all border-0'>Post Ads<BsFilePost /></NavLink>
+                                <NavLink className='btn bg-bg_tertiary px-5 py-0 rounded-2xl mt-2 hover:bg-bg_secondary text-white transition-all border-0'>Post Ads<BsFilePost /></NavLink>
                             </div>
 
                         </div>
@@ -176,7 +179,7 @@ function Home() {
                             <div>
                                 <h2 className='text-2xl font-bold mb-4 text-gray-700'>Buy items at your fingertips</h2>
                                 <p className='text-slate-600'>You can easily select your desired product and purchase it from here. It is easy and safe to use.</p>
-                                <NavLink className='btn bg-pink-600 px-5 py-0 rounded-2xl mt-2 hover:bg-amber-400 text-white transition-all border-0'>All Ads<FaSignsPost /></NavLink>
+                                <NavLink className='btn bg-bg_secondary px-5 py-0 rounded-2xl mt-2 hover:bg-bg_tertiary text-white transition-all border-0'>All Ads<FaSignsPost /></NavLink>
                             </div>
 
                         </div>
@@ -188,7 +191,7 @@ function Home() {
                         <div>
                             <h2 className='text-2xl font-bold mb-4 text-gray-700'>Find the right product for you</h2>
                             <p className='text-slate-600'>Get the product directly in  hand and have the facility of fastest delivery. In the case of buying  and selling products, you get the benefit of seeing and understanding , that is, you can see any product with your own hands and then buy and sell it. ad! </p>
-                            <NavLink className='btn bg-amber-400 px-5 py-0 rounded-2xl mt-2 hover:bg-pink-600 text-white transition-all border-0'>Shop Now<FaLongArrowAltRight /></NavLink>
+                            <NavLink className='btn bg-bg_tertiary px-5 py-0 rounded-2xl mt-2 hover:bg-bg_secondary text-white transition-all border-0'>Shop Now<FaLongArrowAltRight /></NavLink>
                         </div>
                     </div>
                
@@ -202,7 +205,7 @@ function Home() {
                    
                         <div className='text-center'>
                             <div className='shadow-md p-5 bg-white inline-flex justify-center rounded-lg items-center'>
-                                <BsQuestionLg className='w-10 h-10 text-purple-600' />
+                                <BsQuestionLg className='w-10 h-10 text-bg_tertiary' />
                             </div>
                             <div>
                                 <h2 className='text-2xl font-bold mb-4 text-gray-700'>Phone</h2>
@@ -213,7 +216,7 @@ function Home() {
                   
                         <div className='text-center'>
                             <div className='shadow-md p-5 bg-white inline-flex justify-center rounded-lg items-center'>
-                                <IoMailOpen className='w-10 h-10 text-purple-600' />
+                                <IoMailOpen className='w-10 h-10 text-bg_tertiary' />
                             </div>
                             <div>
                                 <h2 className='text-2xl font-bold mb-4 text-gray-700'>E-mail</h2>
@@ -224,7 +227,7 @@ function Home() {
                   
                         <div className='text-center'>
                             <div className='shadow-md p-5 bg-white inline-flex justify-center rounded-lg items-center'>
-                                <FaMapLocationDot className='w-10 h-10 text-purple-600' />
+                                <FaMapLocationDot className='w-10 h-10 text-bg_tertiary' />
                             </div>
                             <div>
                                 <h2 className='text-2xl font-bold mb-4 text-gray-700'>Location</h2>
@@ -244,17 +247,17 @@ function Home() {
                             <h2 className='text-2xl font-bold mb-4 text-gray-700'>User Documents For Everyone </h2>
                             <p className='text-slate-600'>Real users will complete the registration by providing the email. Once the registration is completed, users can easily access the website. You can update your profile by going to the Personal Profile section. If users want to advertise, they have to advertise through the advertiser form. After adding the ad users have to wait for approval which will be available access by the website owner.</p>
                             <span className='flex items-start gap-2'>
-                                <FaArrowAltCircleRight className='text-pink-600 mt-1' />
+                                <FaArrowAltCircleRight className='text-bg_secondary mt-1' />
                                 <p>Buy and Sell any Products.</p>
                             </span>
 
                             <span className='flex items-start gap-2'>
-                                <FaArrowAltCircleRight className='text-pink-600 mt-1' />
+                                <FaArrowAltCircleRight className='text-bg_secondary mt-1' />
                                 <p>Any irrelevant product offered for sale will be rejected.</p>
                             </span>
 
                             <span className='flex gap-2'>
-                                <FaArrowAltCircleRight className='text-pink-600 mt-1 flex-shrink-0' />
+                                <FaArrowAltCircleRight className='text-bg_secondary mt-1 flex-shrink-0' />
                                 <p>Requested not to provide any personal and sensitive information. This responsibility will never be accepted by the website authority. </p>
                             </span>
                         </div>

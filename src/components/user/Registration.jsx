@@ -62,56 +62,99 @@ function Registration(props) {
     };
 
     return (
-        <div className='container-fluid h-screen flex justify-center items-center'>
-            <div className='container mx-auto my-20 sm:mt-40 md:mt-40'> 
+        <div className='container-fluid lg:h-screen flex justify-center items-center'>
+            <div className='container mx-auto my-20 sm:mt-40 md:mt-40'>
                 <div className='grid lg:grid-cols-2 items-center gap-16'>
-                    <form className='mb-10 w-full'>
-                        <h1 className='text-4xl font-bold my-4'>Create Account</h1>
+                    <form className='mx-1 sm:mx-6'>
+                        <h1 className='text-2xl sm:text-3xl md:text-4xl font-bold my-4 text-bg_primary text-center'>Create Account</h1>
 
-                        <div className='mb-2'>
-                            <div className='grid gap-3 sm:grid-cols-1 md:grid-cols-2'>
+                        <div className='mb-4'>
+                            <div className='grid gap-4 sm:grid-cols-1 md:grid-cols-2'>
                                 <div>
-                                    <label className='block text-slate-600 mb-1 font-semibold'>First Name</label>
-                                    <input className='w-full border border-slate-300 h-11 px-2 rounded-md' placeholder='First Name' ref={(input) => fnameRef = input} type='text' />
+                                    <label htmlFor='firstName' className='block text-slate-600 mb-1 font-semibold'>First Name</label>
+                                    <input
+                                        id='firstName'
+                                        className='w-full border border-slate-300 h-11 px-3 rounded-md bg-white text-sm md:text-base'
+                                        placeholder='First Name'
+                                        ref={(input) => fnameRef = input}
+                                        type='text'
+                                    />
                                 </div>
                                 <div>
-                                    <label className='block text-slate-600 mb-1 font-semibold'>Last Name</label>
-                                    <input ref={(input) => lnameRef = input} className='w-full border border-slate-300 h-11 px-2 rounded-md' placeholder='Last Name' type='text' />
+                                    <label htmlFor='lastName' className='block text-slate-600 mb-1 font-semibold'>Last Name</label>
+                                    <input
+                                        id='lastName'
+                                        className='w-full border border-slate-300 h-11 px-3 rounded-md bg-white text-sm md:text-base'
+                                        placeholder='Last Name'
+                                        ref={(input) => lnameRef = input}
+                                        type='text'
+                                    />
                                 </div>
                             </div>
                         </div>
-                        <div className='mb-2'>
-                            <div>
-                                <label className='block text-slate-600 mb-1 font-semibold'>E-mail Address</label>
-                                <input className='w-full border border-slate-300 h-11 px-2 rounded-md' ref={(input) => emailRef = input} placeholder='Enter your e-mail' type='email' />
-                            </div>
+
+                        <div className='mb-4'>
+                            <label htmlFor='email' className='block text-slate-600 mb-1 font-semibold'>E-mail Address</label>
+                            <input
+                                id='email'
+                                className='w-full border border-slate-300 h-11 px-3 rounded-md bg-white text-sm md:text-base'
+                                placeholder='Enter your e-mail'
+                                ref={(input) => emailRef = input}
+                                type='email'
+                            />
                         </div>
-                        <div className='mb-2'>
-                            <div className='grid gap-3 sm:grid-cols-1 md:grid-cols-4'>
+
+                        <div className='mb-4'>
+                            <div className='grid gap-4 sm:grid-cols-1 md:grid-cols-4'>
                                 <div>
-                                    <label className='block text-slate-600 mb-1 font-semibold'>Age</label>
-                                    <input ref={(input) => ageRef = input} className='w-full border border-slate-300 h-11 px-2 rounded-md' placeholder='Age' type='text' />
+                                    <label htmlFor='age' className='block text-slate-600 mb-1 font-semibold'>Age</label>
+                                    <input
+                                        id='age'
+                                        className='w-full border border-slate-300 h-11 px-3 rounded-md bg-white text-sm md:text-base'
+                                        placeholder='Age'
+                                        ref={(input) => ageRef = input}
+                                        type='text'
+                                    />
                                 </div>
                                 <div className='md:col-span-3'>
-                                    <label className='block text-slate-600 mb-1 font-semibold'>Mobile <span className='text-indigo-800 text-sm'>(use BDT mobile number)</span></label>
-                                    <input ref={(input) => mobileRef = input} className='w-full border border-slate-300 h-11 px-2 rounded-md' placeholder='Mobile' type='text' />
+                                    <label htmlFor='mobile' className='block text-slate-600 mb-1 font-semibold'>
+                                        Mobile <span className='text-indigo-800 text-sm'>(use BDT mobile number)</span>
+                                    </label>
+                                    <input
+                                        id='mobile'
+                                        className='w-full border border-slate-300 h-11 px-3 rounded-md bg-white text-sm md:text-base'
+                                        placeholder='Mobile'
+                                        ref={(input) => mobileRef = input}
+                                        type='text'
+                                    />
                                 </div>
                             </div>
                         </div>
-                        <div className='mb-2'>
-                            <div>
-                                <label className='block text-slate-600 mb-1 font-semibold'>Address</label>
-                                <input ref={(input) => addressRef = input} className='w-full border border-slate-300 h-11 px-2 rounded-md' placeholder='State, City, Area' type='text' />
-                            </div>
+
+                        <div className='mb-4'>
+                            <label htmlFor='address' className='block text-slate-600 mb-1 font-semibold'>Address</label>
+                            <input
+                                id='address'
+                                className='w-full border border-slate-300 h-11 px-3 rounded-md bg-white text-sm md:text-base'
+                                placeholder='State, City, Area'
+                                ref={(input) => addressRef = input}
+                                type='text'
+                            />
                         </div>
-                        <div className='mb-2'>
-                            <div className='grid gap-3 sm:grid-cols-1 md:grid-cols-2'>
+
+                        <div className='mb-4'>
+                            <div className='grid gap-4 sm:grid-cols-1 md:grid-cols-2'>
                                 <div>
-                                    <label className='block text-slate-600 mb-1 font-semibold'>Password</label>
+                                    <label htmlFor='password' className='block text-slate-600 mb-1 font-semibold'>Password</label>
                                     <div className='relative'>
-                                        <input type={showPassword ? "text" : "password"} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" ref={(input) => passwordRef = input} />
-                                        <span className="absolute inset-y-0 right-0 flex items-center px-3 bg-transparent text-gray-700 focus:outline-none">
-                                            <button type='button' onClick={togglePasswordVisibility}>
+                                        <input
+                                            id='password'
+                                            type={showPassword ? 'text' : 'password'}
+                                            className='w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm md:text-base rounded-lg p-2.5'
+                                            ref={(input) => passwordRef = input}
+                                        />
+                                        <span className='absolute inset-y-0 right-0 flex items-center px-3'>
+                                            <button type='button' onClick={togglePasswordVisibility} className='text-gray-700 focus:outline-none'>
                                                 {showPassword ? (
                                                     <img width="25" height="25" src="https://img.icons8.com/windows/32/show-password.png" alt="show" />
                                                 ) : (
@@ -122,11 +165,16 @@ function Registration(props) {
                                     </div>
                                 </div>
                                 <div>
-                                    <label className='block text-slate-600 mb-1 font-semibold'>Confirm Password</label>
+                                    <label htmlFor='confirmPassword' className='block text-slate-600 mb-1 font-semibold'>Confirm Password</label>
                                     <div className='relative'>
-                                        <input type={showPassword ? "text" : "password"} id="password" className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" ref={(input) => ConfirmPasswordRef = input} />
-                                        <span className="absolute inset-y-0 right-0 flex items-center px-3 bg-transparent text-gray-700 focus:outline-none">
-                                            <button type='button' onClick={togglePasswordVisibility}>
+                                        <input
+                                            id='confirmPassword'
+                                            type={showPassword ? 'text' : 'password'}
+                                            className='w-full bg-gray-50 border border-gray-300 text-gray-900 text-sm md:text-base rounded-lg p-2.5'
+                                            ref={(input) => ConfirmPasswordRef = input}
+                                        />
+                                        <span className='absolute inset-y-0 right-0 flex items-center px-3'>
+                                            <button type='button' onClick={togglePasswordVisibility} className='text-gray-700 focus:outline-none'>
                                                 {showPassword ? (
                                                     <img width="25" height="25" src="https://img.icons8.com/windows/32/show-password.png" alt="show" />
                                                 ) : (
@@ -138,16 +186,28 @@ function Registration(props) {
                                 </div>
                             </div>
                         </div>
-                        <div className='mb-2'>
-                            <p>If you already have an account? Please <NavLink className="font-bold italic hover:underline" to={'/login'}>Log-in</NavLink></p>
+
+                        <div className='mb-4'>
+                            <p className='text-black'>
+                                If you already have an account, please{' '}
+                                <NavLink className='font-bold italic hover:underline text-bg_primary' to={'/login'}>
+                                    Log in
+                                </NavLink>
+                            </p>
                         </div>
-                        <button className='btn bg-purple-600 text-white w-full text-lg hover:bg-purple-700' onClick={onRegistration}>Sign in</button>
+
+                        <button
+                            className='btn mb-3 bg-bg_primary text-white w-full text-lg hover:bg-bg_primary_hover border-0 outline-none'
+                            onClick={onRegistration}
+                        >
+                            Sign up
+                        </button>
                     </form>
 
                     <div className='w-full hidden lg:flex justify-center items-center relative'>
                         <img src='userimg/registration.png' className='opacity-25' alt='img' />
                         <div className='text-center absolute'>
-                            <h2 className="font-semibold text-3xl">Welcome to Laugh Mart</h2>
+                            <h2 className="font-bold text-4xl text-bg_secondary">Welcome to Ponno Sheba</h2>
                             <p className='text-slate-700 pt-3'>Sign in to manage your account.</p>
                             <div className='flex-shrink-0 flex flex-col gap-y-5 mt-5'>
                                 <h3 className="text-slate-700 text-2xl flex items-center gap-3"> <img src='userimg/cart.png' className='w-10' alt='bag' /> <span>Start posting your own ads.</span></h3>

@@ -6,7 +6,7 @@ import { ErrorToast, SuccessToast, getEmail, setEmail, setToken } from "../helpe
 import Cookie from 'js-cookie'
 import { getProfile, getUserProduct } from "../../redux/state-slice/user-slice";
 
-const BaseUrl = "https://mern-ecommerce-ponnosheba-backend.vercel.app"
+const BaseUrl = "https://ponnosheba-backend.onrender.com"
 
 //user api
 export async function RegistrationRequest(email, firstName,lastName,age,mobile,address, password, confirmPassword){

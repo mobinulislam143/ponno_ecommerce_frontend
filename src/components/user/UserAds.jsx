@@ -1,31 +1,53 @@
 import React from "react";
 import { FaImage, FaDollarSign, FaCalendarAlt, FaListOl, FaEdit, FaTrash } from "react-icons/fa";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
-const UserAds = ({userAds}) => {
-  // Dummy data for demonstration
-  const products = [
-    { id: 1, image: "https://via.placeholder.com/50", name: "Product 1", price: "$10", date: "2023-01-01" },
-    { id: 2, image: "https://via.placeholder.com/50", name: "Product 2", price: "$20", date: "2023-02-01" },
-    { id: 3, image: "https://via.placeholder.com/50", name: "Product 3", price: "$30", date: "2023-03-01" },
-  ];
+const UserAds = ({ userAds }) => {
+  const navigate = useNavigate();
 
   const handleUpdate = (product) => {
-    const confirmUpdate = window.confirm(`Are you sure you want to update ${product.name}?`);
-    if (confirmUpdate) {
-      // Perform the update action
-      alert(`${product.name} has been updated.`);
-    }
+    Swal.fire({
+      title: `Are you sure you want to update ${product.title}?`,
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, update it!',
+      cancelButtonText: 'No, cancel!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Navigate to the update page after confirmation
+        navigate(`/update-ads/${product['_id']}`);
+        Swal.fire(
+          'Updated!',
+          `${product.title} update page opened.`,
+          'success'
+        );
+      }
+    });
   };
 
   const handleDelete = (product) => {
-    const confirmDelete = window.confirm(`Are you sure you want to delete ${product.name}?`);
-    if (confirmDelete) {
-      // Perform the delete action
-      alert(`${product.name} has been deleted.`);
-    }
+    Swal.fire({
+      title: `Are you sure you want to delete ${product.title}?`,
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Yes, delete it!',
+      cancelButtonText: 'No, cancel!',
+      confirmButtonColor: '#d33',
+      cancelButtonColor: '#3085d6',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        // Perform the delete action
+        Swal.fire(
+          'Deleted!',
+          `${product.title} has been deleted.`,
+          'success'
+        );
+      }
+    });
   };
-  console.log(userAds)
+
+  console.log(userAds);
 
   return (
     <div className="container mx-auto p-5 bg-gray-100 rounded-lg shadow-md">
@@ -56,16 +78,24 @@ const UserAds = ({userAds}) => {
                 <td className="py-4 px-6">{product.createdAt}</td>
                 <td className="py-4 px-6 flex space-x-2">
                   <NavLink 
-                     to={`/update-ads/${product['_id']}`}
-                    className="bg-purple-500 text-white px-3 py-1 rounded-full hover:bg-purple-600 flex items-center"
+                    to="#"
+                    className="bg-purple-500 text-white px-4 text-center py-4 rounded-lg hover:bg-purple-600 flex items-center"
+                    onClick={(e) => {
+                      e.preventDefault(); // Prevent default link behavior
+                      handleUpdate(product);
+                    }}
                   >
-                    <FaEdit className="mr-1" /> Update
+                    <FaEdit className="mr-1" /> 
                   </NavLink>
                   <NavLink 
-                    onClick={() => handleDelete(product)} 
-                    className="bg-red-500 text-white px-3 py-1 rounded-full hover:bg-red-600 flex items-center"
+                    to="#"
+                    className="bg-red-500 text-white px-4 text-center py-4 rounded-lg hover:bg-red-600 flex items-center"
+                    onClick={(e) => {
+                      e.preventDefault(); // Prevent default link behavior
+                      handleDelete(product);
+                    }}
                   >
-                    <FaTrash className="mr-1" /> Delete
+                    <FaTrash className="mr-1" /> 
                   </NavLink>
                 </td>
               </tr>
