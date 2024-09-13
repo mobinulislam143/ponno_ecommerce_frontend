@@ -62,7 +62,7 @@ function AllAds({ products }) {
         <div className="container mx-auto">
             <div className='bg-white p-6 rounded-lg'>
             
-                <div data-aos="fade-up" className='bg-bg_tertiary lg:flex justify-between items-center p-5 rounded-lg'>
+                <div data-aos="fade-up" className='bg-bg_primary_light lg:flex justify-between items-center p-5 rounded-lg'>
 
                     <p className='px-2 rounded-2xl bg-bg_secondary text-white'>Get Safe Browser in your Location!</p>
                     <div>
@@ -291,11 +291,11 @@ function AllAds({ products }) {
                             <div className="px-2 py-3">
                                 <span className='flex items-center gap-3 text-bg_primary'>
                                     <img src='https://i.postimg.cc/C1GcmJHL/safety.jpg' className='w-6' alt='safety'/>
-                                    <p className='font-semibold text-lg'>Be careful: avoid online scams</p>
+                                    <p className='font-semibold text-lg text-bg_secondary'>Be careful: avoid online scams</p>
                                 </span>
                                 <ul className='list-disc pl-3'>
                                     <li className='list-item mb-3 text-black'>Never share bank card details or OTP, always verify the product before making payment. Ponno Sheba does not provide delivery service. Always be alert.</li>
-                                    <Link to={'/safety-tips'} className='mt-4 text-indigo-600 hover:underline'>See all safety tips</Link>
+                                    <Link to={'/safety-tips'} className='mt-4 text-bg_primary hover:underline'>See all safety tips</Link>
                                 </ul>
                             </div>
                         </div>

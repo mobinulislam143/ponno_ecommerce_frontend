@@ -256,6 +256,27 @@ export async function getCommentByProductRequest(id) {
         console.log(e.toString());
     }
 }
+export async function PostCommentRequest(id, postBody) {
+    let url = `${BaseUrl}/api/commentProduct/${id}`;
+    try {
+        const res = await axios.post(url, postBody, {
+            headers:{
+                'token': Cookie.get('token')
+            }
+        });
+        console.log(postBody)
+        if (res.status === 200) {
+            console.log('my comment ', res.data['data']);
+            // store.dispatch(getCommentByProduct(res.data['data']));
+        } else {
+            console.log("product details is undefined");
+            return null; 
+        }
+    } catch (e) {
+        // ErrorToast("You are unauthorize")
+        console.log(e.toString());
+    }
+}
 
 export async function AllProduct(){
     store.dispatch(showLoader())

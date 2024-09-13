@@ -10,7 +10,7 @@ import { BsTelephonePlusFill } from "react-icons/bs";
 import Comments from './Comments';
 import { useSelector } from 'react-redux';
 import ProductStore from '../ProductStore';
-import { AllCategoryRequest } from '../APIRequest/APIRequest';
+import { AllCategoryRequest } from '../APIRequest/APIRequest'; 
 
 function AdsDetails({ProductDetails}) {
     
@@ -33,40 +33,46 @@ function AdsDetails({ProductDetails}) {
     return (
         <div className='container mx-auto'>
             <div className='bg-white p-6 rounded-lg'>
-                <div className='bg-purple-700  lg:flex justify-between items-center p-5 rounded-lg'>
-                    <p className='px-2 rounded-2xl bg-amber-500'>Get Safe Browser in your Location!</p>
+
+                <div data-aos="fade-up" className='bg-bg_primary_light lg:flex justify-between items-center p-5 rounded-lg'>
+
+                    <p className='px-2 rounded-2xl bg-bg_secondary text-white'>Get Safe Browser in your Location!</p>
                     <div>
-                        <span className='text-white'><NavLink to='/'>Home </NavLink>/<NavLink to='/all-ads'> All Ads </NavLink>/<NavLink to='/all-ads'> Current Ads</NavLink></span>
+                        <span className='text-bg_primary'>
+                            <NavLink to='/'>Home </NavLink>/
+                            <NavLink to='/all-ads'> All Ads </NavLink>/
+                            <NavLink to='/all-ads'> Current Ads</NavLink>
+                        </span>
                     </div>
                 </div>
 
-                <div className='pt-5 lg:flex justify-between mb-2'>
-                    <h1 className='text-lg flex items-center gap-2'><TbCategoryPlus  />Category: {ProductDetails.category['categoryName']}</h1>
-                    <h1 className='text-lg flex items-center gap-2'><MdMyLocation />Location: {ProductDetails.locations['division']}</h1>
+                <div className='pt-5 lg:flex justify-between mb-2' data-aos="fade-up">
+                    <h1 className='text-lg flex items-center gap-2 text-black'><TbCategoryPlus />Category: All</h1>
+                    <h1 className='text-lg flex items-center gap-2 text-black'><MdMyLocation />Location: Cumilla</h1>
                     
-                    <label className="input input-bordered flex items-center gap-2">
-                        <input type="text" className="grow lg:w-72" placeholder="Search" />
-                        <NavLink className='bg-amber-500 p-3 rounded-lg'><FaSearch /></NavLink>
+                    <label className="input  flex border border-black outline-none focus:border-bg_secondary bg-white items-center gap-2 ">
+                        <input type="text" className="grow lg:w-72 text-black" placeholder="Search" />
+                        <NavLink className='bg-bg_secondary p-3 text-white rounded-lg'><FaSearch /></NavLink>
                     </label>
                 </div>
                 <hr/>
 
                 <div className='grid lg:grid-cols-5 sm:grid-cols-1 mt-4 gap-4'>
                     <div className='sm:hidden lg:block md:hidden'>
-                        <h2 className='font-semibold'>Devloper Details</h2>
-                        <div className='card p-4 shadow-md'>
+                        <h2 className='font-semibold text-bg_primary'>Devloper Details</h2>
+                        <div className='card p-4 shadow-md text-black'>
                             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTv1aAxmwETVWQptk4y4e8Wbv_E8FnTUEXyWr0qPKgeXA&s" className='w-20 rounded-lg my-4' alt='img' />
                             <h1 className='font-semibold text-lg'>Name: Mahi</h1>
                             <p className='text-slate-600'>This is Mobinul Islam Mahi. Mern Devloper</p>
                         </div>
                     </div>
                     <div className='lg:col-span-3 border-r-2 border-slate-2200 pr-3 sm:col-span-1'>
-                        <h1 className='font-semibold text-lg'>Single result by Search: GigaTech Core i5 4th Gen.</h1>
+                        <h1 className='font-semibold text-lg text-bg_primary'>Single result by Search: {ProductDetails.title}</h1>
                         <p className='text-sm text-slate-600'>Posted on {ProductDetails.createdAt}, {ProductDetails.locations['district']}, {ProductDetails.locations['division']} Division</p>
                         <div className='my-3'>
                             <ProductImage/>
                         </div>
-                        <h1 className='font-semibold text-purple-600  text-2xl mb-2'>Price: {ProductDetails['price']} <span className='font-bold text-3xl'>৳</span></h1>
+                        <h1 className='font-semibold text-bg_primary  text-2xl mb-2'>Price: {ProductDetails['price']} <span className='font-bold text-3xl'>৳</span></h1>
 
 
                         <span className='text-slate-600'>Product Name: <span className='text-slate-900 font-semibold'>{ProductDetails['title']} </span></span>
@@ -117,7 +123,7 @@ function AdsDetails({ProductDetails}) {
                                 </div>
                             </div>
                         <hr/>
-                        <label htmlFor='my_modal_5' className='btn bg-amber-500 rounded-lg py-0 mt-3 hover:bg-amber-600 transition-all text-white border-0'><MdUpdateDisabled />Report Ads</label>
+                        <label htmlFor='my_modal_5' className='btn bg-bg_secondary rounded-lg py-0 mt-3 hover:bg-bg_secondary_hover transition-all text-white border-0'><MdUpdateDisabled />Report Ads</label>
 
                         <input type='checkbox' id='my_modal_5' className='modal-toggle' />
                         <div className='modal' role='dialog'>
@@ -148,13 +154,13 @@ function AdsDetails({ProductDetails}) {
                     <div className='col-span-1'>
                         <div className='border-2  py-3 rounded-lg'>
                             <div className='px-2 pb-2 border-b-2'>
-                                <h1 className='text-slate-500'>Sales by: <span className='text-slate-900 font-semibold'>{ProductDetails['user']['firstName']} {ProductDetails['user']['lastName']}</span></h1>
-                                <p className='text-slate-500'>Member since:- <b>{ProductDetails['user']['createdAt']}</b></p>
+                                <h1 className='text-black'>Sales by: <span className='text-slate-900 font-semibold'>{ProductDetails['user']['firstName']} {ProductDetails['user']['lastName']}</span></h1>
+                                <p className='text-black'>Member since:- <b>{ProductDetails['user']['createdAt']}</b></p>
                             </div>
 
                             <div className="px-2 py-3 border-b-2 flex items-start gap-3 cursor-pointer" >
 
-                                <div className='text-white bg-purple-600 flex justify-center p-2 rounded-3xl w-9'> 
+                                <div className='text-white bg-bg_primary flex justify-center p-2 rounded-3xl w-9'> 
                                     <BsTelephonePlusFill  />
                                 </div>
                                 <div id="phoneNumberContainer" onClick={revealPhoneNumber} className='block'>
@@ -170,9 +176,9 @@ function AdsDetails({ProductDetails}) {
                                 <p className='text-slate-700 text-lg font-semibold px-2 pt-1'>All Categories</p>
 
                                 {AllCategoryList && AllCategoryList.length > 0 ? (
-                                    <div className='text-slate-600 text-sm px-2'>
+                                    <div className='text-sm px-2'>
                                         {AllCategoryList.map((item, i) => (
-                                                <NavLink key={i} to={`/by-category/${item._id}`} className='block'>{item.categoryName} ({item.productCount})</NavLink>
+                                                <NavLink key={i} to={`/by-category/${item._id}`} className='block text-black hover:text-bg_primary'>{item.categoryName} ({item.productCount})</NavLink>
                                         ))}
                                     </div>
                                 ) : (
@@ -183,11 +189,11 @@ function AdsDetails({ProductDetails}) {
                             <div className="px-2 py-3 border-t-2">
                                 <span className='flex items-center gap-3'>
                                     <img src='https://i.postimg.cc/C1GcmJHL/safety.jpg' className='w-6'/>
-                                    <p className='font-semibold text-lg'>Be careful: avoid online scams</p>
+                                    <p className='font-semibold text-bg_secondary text-lg'>Be careful: avoid online scams</p>
                                 </span>
                                 <ul className='list-disc pl-3' >
-                                    <li className='list-item mb-3'>Never share bank card details or OTP, always verify the product before making payment. Ponno Sheba does not provide delivery service. Always be alert.</li>
-                                    <Link to={'/safety-tips'} className='mt-4 text-indigo-600 hover:underline'>See all safety tips</Link>
+                                    <li className='list-item mb-3 text-black'>Never share bank card details or OTP, always verify the product before making payment. Ponno Sheba does not provide delivery service. Always be alert.</li>
+                                    <Link to={'/safety-tips'} className='mt-4 text-bg_primary hover:underline'>See all safety tips</Link>
                                 </ul>
 
 
@@ -198,7 +204,7 @@ function AdsDetails({ProductDetails}) {
 
 
             <div className=''>
-                <h1 className='text-2xl font-semibold'>Comments</h1><hr/>
+                <h1 className='text-2xl font-semibold text-black'>Comments</h1><hr/>
                 <Comments/>
             </div>
             </div>

@@ -408,7 +408,7 @@ function PostAds(props) {
                     ))}                    
                     </div>
 
-                    <NavLink onClick={handleSubmit} className='btn bg-pink-600 rounded-lg text-1xl border-0 text-white w-full hover:bg-amber-500 transition-all'>Submit</NavLink>
+                    <NavLink onClick={handleSubmit} className='btn bg-bg_primary rounded-lg text-1xl border-0 text-white w-full hover:bg-bg_primary_hover transition-all'>Submit</NavLink>
             </div>
             </motion.div>
 

@@ -26,6 +26,7 @@
     "lightgallery": "^2.7.2",
     "npm": "^10.5.0",
     "react": "^18.2.0",
+    "react-animated-cursor": "^2.11.2",
     "react-awesome-slider": "^2.2.1",
     "react-dom": "^18.2.0",
     "react-hot-toast": "^2.4.1",

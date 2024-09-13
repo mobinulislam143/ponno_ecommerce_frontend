@@ -7,7 +7,7 @@ import { AdsDetailsRequest, getCommentByProductRequest } from '../components/API
 import { getProductDetails } from '../redux/state-slice/product-slice';
 
 const AdsDetails = lazy(() => import('../components/product/AdsDetails'));
-
+ 
 function AdsDetailPage() {
     const { id } = useParams();
     const dispatch = useDispatch();
@@ -18,8 +18,8 @@ function AdsDetailPage() {
 
     useEffect(() => {
         if (id) {
-            AdsDetailsRequest(id); // Dispatch the request
-            getCommentByProductRequest(id); // Dispatch the comments request
+            AdsDetailsRequest(id);
+            getCommentByProductRequest(id); 
         }
     }, [ id]);
 

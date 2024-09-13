@@ -37,7 +37,7 @@ function MasterLayout(props) {
                         <div className="text-center lg:text-left">
                         <NavLink to="/">
                             <img
-                            src="https://i.postimg.cc/ydjFDGy9/logo1.png"
+                            src="https://i.postimg.cc/sXjsdn7s/ponnosheba1-ai-removebg-preview.png"
                             className="w-20 mx-auto lg:mx-0 cursor-pointer"
                             alt="mainLogo"
                             />
@@ -117,29 +117,33 @@ function MasterLayout(props) {
                 </div>
 
                 <div className="footer bg-bg_primary text-white pt-10 pb-12">
-                    <div className="container mx-auto grid lg:grid-cols-4 gap-10">
-                        <div>
-                            <img src="https://i.postimg.cc/0QVwkw90/logo2.png" alt="logo2" className="mb-3" />
-                            <p>This website is built with ReactJS, ExpressJS, NodeJS, MongoDB & Tailwind CSS. For any questions, visit <a href="https://mobinulislam.epizy.com" className="underline">https://mobinulislam.epizy.com</a> or email: mobinulislammahi@gmail.com</p>
+                    <div className="container mx-auto grid lg:grid-cols-5 md:grid-cols-2 sm:grid-cols-1 gap-10">
+                        <div className="text-center lg:text-left md:text-left mx-auto w-72">
+                            <img  src="https://i.postimg.cc/qRvVZNH7/fdfdfs.png" alt="logo2" className="mb-3 w-28 mx-auto" />
+                            <p>This website is built with ReactJS, ExpressJS, NodeJS, MongoDB & Tailwind CSS. For any questions, visit <a href="https://mobinulislam.epizy.com" className="underline">https://mahi-lac.vercel.app</a> or email: dev.mahi2628@gmail.com</p>
                         </div>
-                        <div>
+                        <div className="text-center lg:text-left md:text-left mx-auto">
                             <h2 className="font-bold text-xl mb-3">Important Links</h2>
                             <NavLink to="/" className="block py-1 hover:text-bg_secondary hover:ml-1 transition-all">Home</NavLink>
                             <NavLink to="/all-ads" className="block py-1 hover:text-bg_secondary hover:ml-1 transition-all">All Ads</NavLink>
                             <NavLink to="/post-ads" className="block py-1 hover:text-bg_secondary hover:ml-1 transition-all">Post your Ads</NavLink>
                             <NavLink to="/profile" className="block py-1 hover:text-bg_secondary hover:ml-1 transition-all">My Account</NavLink>
                         </div>
-                        <div>
+                        <div className="text-center lg:text-left md:text-left mx-auto">
                             <h2 className="font-bold text-xl mb-3">Ponno Sheba</h2>
                             <NavLink to="/safety-tips" className="block py-1 hover:text-bg_secondary hover:ml-1 transition-all">Safety Tips</NavLink>
                             <NavLink to="/terms-and-condition" className="block py-1 hover:text-bg_secondary hover:ml-1 transition-all">Terms and Conditions</NavLink>
                             <NavLink to="/contact" className="block py-1 hover:text-bg_secondary hover:ml-1 transition-all">Contact Us</NavLink>
                         </div>
-                        <div>
+                        <div className="text-center lg:text-left md:text-left mx-auto">
                             <h2 className="font-bold text-xl mb-3">Newsletter</h2>
                             <p>Sign up and receive the latest tips via email.</p>
                             <input type="email" placeholder="Your email" className="w-full bg-white h-11 px-3 text-bg_primary rounded-md mt-2 outline-none foucus:outline-none border focus:border-bg_secondary focus:shadow-lg focus:shadow-bg_secondary" />
                             <button className="btn bg-bg_secondary border-none text-white px-5 py-2 mt-4 rounded-lg hover:bg-bg_secondary_hover transition-all">Subscribe</button>
+                        </div>
+                        <div className='text-center lg:text-left md:text-left mx-auto'>
+                            <p className="text-2xl text-center">We accept</p>
+                            <img className='w-96' src="banking.png" alt='banking'/>
                         </div>
                     </div>
                     <hr className="mt-10 border-gray-500" />
