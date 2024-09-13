@@ -8,13 +8,17 @@ const UserProfile = lazy(() => import("../components/user/UserProfile"));
 
 const UserProfilePage = () => {
   const userProfileData = useSelector((state) => state.user.Profile);
+  const userAdsdata = useSelector((state) => state.user.UserProduct);
+
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         await getProfileRequest();
+        await UserAdsRequest();
+
       } catch (e) {
-        console.error(e.toString());
+        console.error(e.toString());  
       }
     };
 
@@ -28,7 +32,7 @@ const UserProfilePage = () => {
       <MasterLayout>
         <ProfileComponent> {/* Use ProfileComponent to avoid name conflict */}
           <Suspense fallback={<LazyLoader />}>
-            <UserProfile profile={userProfileData} />
+            <UserProfile profile={userProfileData} userAds={userAdsdata} />
           </Suspense>
         </ProfileComponent>
       </MasterLayout>

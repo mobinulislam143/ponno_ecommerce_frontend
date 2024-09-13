@@ -381,6 +381,27 @@ export async function UserAdsRequest(){
         store.dispatch(hideLoader())
     }
 }
+
+export async function userTotalAdsRequest(){
+    store.dispatch(showLoader())
+    let url = `${BaseUrl}/api/userTotalProduct`
+    try{
+        const res = await axios.get(url, {
+            headers: {
+                'token': Cookie.get('token')
+            }
+        })
+        if(res.data['status'] === "success"){
+            store.dispatch(hideLoader())
+            console.log(res.data['data'])
+            
+            store.dispatch(getUserProduct(res.data['data']))
+        }
+    }catch(e){
+        console.log(e.toString());
+        store.dispatch(hideLoader())
+    }
+}
 export async function EditProfileRequest(postBody){
     store.dispatch(showLoader())
     let url = `${BaseUrl}/api/updateProfile`

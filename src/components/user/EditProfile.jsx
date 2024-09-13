@@ -4,7 +4,12 @@ import { ToastContainer } from 'react-toastify';
 import { ErrorToast, SuccessToast } from "../helper/FormHelper";
 
 
-const EditProfile = ({profile}) => {
+const EditProfile = ({ profile }) => {
+
+  const [showPassword, setShowPassword] = useState(false);
+  const togglePasswordVisibility = () => {
+    setShowPassword(!showPassword);
+  };
 
   const [formData, setFormData] = useState({
     firstName: "",
@@ -28,7 +33,7 @@ const EditProfile = ({profile}) => {
         confirmPassword: "",
       });
     }
-  }, [profile]); 
+  }, [profile]);
   const handleChange = (e) => {
     setFormData({
       ...formData,
@@ -46,9 +51,9 @@ const EditProfile = ({profile}) => {
       }
 
       const postBody = { ...formData };
-      delete postBody.confirmPassword; 
+      delete postBody.confirmPassword;
 
-      await EditProfileRequest(postBody); 
+      await EditProfileRequest(postBody);
       SuccessToast("Profile updated successfully");
     } catch (e) {
       console.error(e);
@@ -117,31 +122,51 @@ const EditProfile = ({profile}) => {
           />
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div>
-            <label className="block text-gray-700">Password</label>
+          <div className="relative">
+            <label htmlFor="password" className="block text-gray-700">Password</label>
             <input
-              type="password"
+              id="password"
+              type={showPassword ? 'text' : 'password'}
               name="password"
               value={formData.password}
               onChange={handleChange}
               className="mt-1 block w-full rounded-md border border-gray-300 p-2.5 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-white text-amber-800 font-semibold"
             />
+            <span className='absolute inset-y-4 top-9 right-0 flex items-center px-3'>
+              <button type='button' onClick={togglePasswordVisibility} className='text-gray-700 focus:outline-none'>
+                {showPassword ? (
+                  <img width="25" height="25" src="https://img.icons8.com/windows/32/show-password.png" alt="show" />
+                ) : (
+                  <img width="25" height="25" src="https://img.icons8.com/pulsar-color/48/hide.png" alt="hide" />
+                )}
+              </button>
+            </span>
           </div>
-          <div>
-            <label className="block text-gray-700">Confirm Password</label>
+          <div className="relative">
+            <label htmlFor="confirmpass" className="block text-gray-700">Confirm Password</label>
             <input
-              type="password"
+              id="confirmpass"
+              type={showPassword ? 'text' : 'password'}
               name="confirmPassword"
               value={formData.confirmPassword}
               onChange={handleChange}
               className="mt-1 block w-full rounded-md border border-gray-300 p-2.5 shadow-sm focus:border-indigo-500 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 bg-white text-amber-800 font-semibold"
             />
+            <span className='absolute inset-y-4 top-9 right-0 flex items-center px-3'>
+              <button type='button' onClick={togglePasswordVisibility} className='text-gray-700 focus:outline-none'>
+                {showPassword ? (
+                  <img width="25" height="25" src="https://img.icons8.com/windows/32/show-password.png" alt="show" />
+                ) : (
+                  <img width="25" height="25" src="https://img.icons8.com/pulsar-color/48/hide.png" alt="hide" />
+                )}
+              </button>
+            </span>
           </div>
         </div>
         <div className="text-center">
           <button
             type="submit"
-            className="px-6 py-2 mt-4 text-white bg-amber-600 rounded-md shadow-sm hover:bg-purple-600 focus:outline-none focus:ring-2 focus:ring-indigo-300 focus:ring-opacity-50"
+            className="px-6 py-2 mt-4 text-white bg-bg_primary rounded-md shadow-sm hover:bg-bg_primary_hover focus:outline-none focus:ring-2 "
           >
             Update
           </button>

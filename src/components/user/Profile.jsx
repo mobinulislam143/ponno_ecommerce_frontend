@@ -18,7 +18,7 @@ function Profile(props) {
               <div className={`h-screen ${open ? "w-3/12":"w-20"} p-3  bg-white duration-300 border-r-2`}>
                   <div className="space-y-3">
                       <div className="flex items-center justify-between">
-                      <span class={`ml-2 text-2xl tracking-wide truncate ${!open && "hidden"} duration-300 font-bold`}><span className='text-purple-700'>Ponno</span> <span className='text-pink-700'>Sheba</span> </span>
+                      <span class={`ml-2 text-2xl tracking-wide truncate ${!open && "hidden"} duration-300 font-bold`}><span className='text-bg_primary'>Ponno</span> <span className='text-bg_secondary'>Sheba</span> </span>
 
                           <button className="p-2">
                              

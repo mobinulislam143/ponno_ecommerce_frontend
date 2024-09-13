@@ -54,7 +54,7 @@ const UserAds = ({ userAds }) => {
       <h1 className="text-3xl font-bold mb-5 text-center text-black">User Product</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white rounded-lg shadow-md">
-          <thead className="bg-gradient-to-r from-purple-400 to-purple-600 text-white">
+          <thead className="bg-gradient-to-r from-bg_primary to-bg_secondary text-white">
             <tr>
               <th className="py-3 px-6 text-left"><FaListOl className="inline mr-2" />Serial</th>
               <th className="py-3 px-6 text-left"><FaImage className="inline mr-2" />Product Image</th>
@@ -79,7 +79,7 @@ const UserAds = ({ userAds }) => {
                 <td className="py-4 px-6 flex space-x-2">
                   <NavLink 
                     to="#"
-                    className="bg-purple-500 text-white px-4 text-center py-4 rounded-lg hover:bg-purple-600 flex items-center"
+                    className="bg-bg_primary text-white px-4 text-center py-4 rounded-lg hover:bg-bg_primary_hover flex items-center"
                     onClick={(e) => {
                       e.preventDefault(); // Prevent default link behavior
                       handleUpdate(product);
@@ -89,7 +89,7 @@ const UserAds = ({ userAds }) => {
                   </NavLink>
                   <NavLink 
                     to="#"
-                    className="bg-red-500 text-white px-4 text-center py-4 rounded-lg hover:bg-red-600 flex items-center"
+                    className="bg-bg_secondary text-white px-4 text-center py-4 rounded-lg hover:bg-bg_secondary_hover flex items-center"
                     onClick={(e) => {
                       e.preventDefault(); // Prevent default link behavior
                       handleDelete(product);

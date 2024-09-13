@@ -20,7 +20,6 @@ import EditProfilePage from './Pages/EditProfilePage';
 import UserProfilePage from './Pages/UserProfilePage';
 import TermsConditionPage from './Pages/TermsConditionPage';
 import UpdateAdsPage from './Pages/UpdateAdsPage';
-import SocialMediaIcons from './components/Utility/SocialMediaIcons';
  
 
 function App() {

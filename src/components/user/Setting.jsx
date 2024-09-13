@@ -17,17 +17,17 @@ const Setting = () => {
   }
 
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-10 text-black">
       <h1 className="text-3xl font-semibold mb-6">Account Settings</h1>
       <div className="bg-white shadow-md rounded-lg p-8">
         <h2  className="text-xl font-semibold mb-4">Logout</h2>
         <p className="text-gray-600 mb-6">Click below to logout from your account.</p>
-        <button onClick={onLogout} className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition-colors">Logout</button>
+        <button onClick={onLogout} className="bg-bg_secondary text-white py-2 px-4 rounded-lg hover:bg-bg_secondary_hover transition-colors">Logout</button>
       </div>
       <div className="bg-white shadow-md rounded-lg p-8 mt-6">
         <h2 className="text-xl font-semibold mb-4">Remove Account</h2>
         <p className="text-gray-600 mb-6">If you wish to permanently remove your account, please click below. This action is irreversible.</p>
-        <button className="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600 transition-colors">Remove Account</button>
+        <button className="bg-bg_secondary text-white py-2 px-4 rounded-lg hover:bg-bg_secondary_hover transition-colors">Remove Account</button>
       </div>
       <ToastContainer position="top-right" />
     </div>
