@@ -12,7 +12,7 @@ function Profile(props) {
   const [open, setOpen] = useState(true)
 
   return (
-      <Fragment>
+      <Fragment> 
          
          <div className='flex'>
               <div className={`h-screen ${open ? "w-3/12":"w-20"} p-3  bg-white duration-300 border-r-2`}>
