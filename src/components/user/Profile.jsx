@@ -32,7 +32,7 @@ function Profile(props) {
                               
                           
                               <li>
-                                  <Link to={'/user-profile'} class="relative flex flex-row items-center h-11 focus:bg-amber-100 focus:border-amber-500 hover:bg-amber-100 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-amber-500 pr-6">
+                                  <Link to={'/users/user-profile'} class="relative flex flex-row items-center h-11 focus:bg-amber-100 focus:border-amber-500 hover:bg-amber-100 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-amber-500 pr-6">
                                       <span class="inline-flex justify-center items-center ml-4 text-lg">
                                         <ImProfile />
                                       </span>
@@ -40,7 +40,7 @@ function Profile(props) {
                                   </Link>
                               </li>
                               <li>
-                                  <Link to={'/user-ads'} class="relative flex flex-row items-center h-11 focus:bg-amber-100 focus:border-amber-500 hover:bg-amber-100 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-amber-500 pr-6">
+                                  <Link to={'/users/user-ads'} class="relative flex flex-row items-center h-11 focus:bg-amber-100 focus:border-amber-500 hover:bg-amber-100 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-amber-500 pr-6">
                                       <span class="inline-flex justify-center items-center ml-4 text-lg">
                                         <MdProductionQuantityLimits />
                                       </span>
@@ -48,7 +48,7 @@ function Profile(props) {
                                   </Link>
                                   </li>
                                   <li>
-                                  <Link to={'/edit-profile'} class="relative flex flex-row items-center h-11 focus:bg-amber-100 focus:border-amber-500 hover:bg-amber-100 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-amber-500 pr-6">
+                                  <Link to={'/users/edit-profile'} class="relative flex flex-row items-center h-11 focus:bg-amber-100 focus:border-amber-500 hover:bg-amber-100 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-amber-500 pr-6">
                                       <span class="inline-flex justify-center items-center ml-4 text-lg">
                                         <FaEdit />
                                       </span>
@@ -56,7 +56,7 @@ function Profile(props) {
                                   </Link>
                                   </li>
                                   <li>
-                                  <Link to={'/settings'} class="relative flex flex-row items-center h-11 focus:bg-amber-100 focus:border-amber-500 hover:bg-amber-100 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-amber-500 pr-6">
+                                  <Link to={'/users/settings'} class="relative flex flex-row items-center h-11 focus:bg-amber-100 focus:border-amber-500 hover:bg-amber-100 text-gray-600 hover:text-gray-800 border-l-4 border-transparent hover:border-amber-500 pr-6">
                                       <span class="inline-flex justify-center items-center ml-4 text-lg">
                                       <FiSettings />
                                       </span>

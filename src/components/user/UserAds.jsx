@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaImage, FaDollarSign, FaCalendarAlt, FaListOl, FaEdit, FaTrash } from "react-icons/fa";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { DeleteUserAdsRequest } from "../APIRequest/APIRequest";
 
-const UserAds = ({ userAds }) => {
+
+const UserAds = ({ userAds: initialAds }) => {
+  const [userAds, setUserAds] = useState(initialAds); // Create local state for ads
   const navigate = useNavigate();
 
   const handleUpdate = (product) => {
@@ -15,7 +18,6 @@ const UserAds = ({ userAds }) => {
       cancelButtonText: 'No, cancel!',
     }).then((result) => {
       if (result.isConfirmed) {
-        // Navigate to the update page after confirmation
         navigate(`/update-ads/${product['_id']}`);
         Swal.fire(
           'Updated!',
@@ -26,7 +28,7 @@ const UserAds = ({ userAds }) => {
     });
   };
 
-  const handleDelete = (product) => {
+  const handleDelete = async (product) => {
     Swal.fire({
       title: `Are you sure you want to delete ${product.title}?`,
       icon: 'warning',
@@ -35,19 +37,28 @@ const UserAds = ({ userAds }) => {
       cancelButtonText: 'No, cancel!',
       confirmButtonColor: '#d33',
       cancelButtonColor: '#3085d6',
-    }).then((result) => {
+    }).then(async (result) => {
       if (result.isConfirmed) {
-        // Perform the delete action
-        Swal.fire(
-          'Deleted!',
-          `${product.title} has been deleted.`,
-          'success'
-        );
+        try {
+          const response = await DeleteUserAdsRequest(product['_id']);
+          if (response.data.status === "success") {
+            // Remove the product from the list after successful deletion
+            setUserAds(userAds.filter((ad) => ad['_id'] !== product['_id']));
+            Swal.fire(
+              'Deleted!',
+              `${product.title} has been deleted.`,
+              'success'
+            );
+          } else {
+            Swal.fire('Error', 'Failed to delete the product', 'error');
+          }
+        } catch (error) {
+          console.log( product['_id'])
+          Swal.fire('Error', 'An error occurred while deleting', 'error');
+        }
       }
     });
   };
-
-  console.log(userAds);
 
   return (
     <div className="container mx-auto p-5 bg-gray-100 rounded-lg shadow-md">
@@ -66,11 +77,11 @@ const UserAds = ({ userAds }) => {
           </thead>
           <tbody className="text-gray-700">
             {userAds.map((product, index) => (
-              <tr key={product.id} className={`border-b ${index % 2 === 0 ? "bg-gray-50" : "bg-gray-200"}`}>
+              <tr key={product['_id']} className={`border-b ${index % 2 === 0 ? "bg-gray-50" : "bg-gray-200"}`}>
                 <td className="py-4 px-6">{index + 1}</td>
                 <td className="py-4 px-6">
                   <Link to={`/ads-details/${product['_id']}`}>
-                    <img src={product.details['img1']} alt={product.name} className="h-12 w-12 object-cover rounded-full" />
+                    <img src={product.details['img1']} alt={product.title} className="h-12 w-12 object-cover rounded-full" />
                   </Link>
                 </td>
                 <td className="py-4 px-6">{product.title}</td>
@@ -81,7 +92,7 @@ const UserAds = ({ userAds }) => {
                     to="#"
                     className="bg-bg_primary text-white px-4 text-center py-4 rounded-lg hover:bg-bg_primary_hover flex items-center"
                     onClick={(e) => {
-                      e.preventDefault(); // Prevent default link behavior
+                      e.preventDefault();
                       handleUpdate(product);
                     }}
                   >
@@ -91,7 +102,7 @@ const UserAds = ({ userAds }) => {
                     to="#"
                     className="bg-bg_secondary text-white px-4 text-center py-4 rounded-lg hover:bg-bg_secondary_hover flex items-center"
                     onClick={(e) => {
-                      e.preventDefault(); // Prevent default link behavior
+                      e.preventDefault();
                       handleDelete(product);
                     }}
                   >

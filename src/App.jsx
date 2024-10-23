@@ -10,7 +10,6 @@ import AdsDetailPage from './Pages/AdsDetailPage';
 import AllAdsPage from './Pages/AllAdsPage';
 import AdminLoginPage from './components/Dashboard/Pages/AdminLoginPage';
 import Dashboard from './components/Dashboard/Dashboard';
-import FullScreenLoader from './components/MasterLayout/FullScreenLoader';
 import ProductByCategoryPage from './Pages/ProductByCategoryPage';
 import SafetyPage from './Pages/SafetyPage';
 import NotFoundPage from './Pages/NotFoundPage';
@@ -38,10 +37,10 @@ function App() {
             <Route path='/verifyEmail' element={<VerifyOtpPage/>} />
             <Route path='/login' element={<LoginPage/>} />
           
-            <Route path='/user-profile' element={<UserProfilePage/>} />
-            <Route path='/user-ads' element={<UserAdsPage/>} />
-            <Route path='/edit-profile' element={<EditProfilePage/>} />
-            <Route path='/settings' element={<SettingsPage/>} />
+            <Route path='/users/user-profile' element={<UserProfilePage/>} />
+            <Route path='/users/user-ads' element={<UserAdsPage/>} />
+            <Route path='/users/edit-profile' element={<EditProfilePage/>} />
+            <Route path='/users/settings' element={<SettingsPage/>} />
 
             {/* product */}
             <Route path='/post-ads' element={<PostAdsPage/>} />
@@ -59,7 +58,7 @@ function App() {
           </Routes>
         </BrowserRouter>
        
-        <FullScreenLoader/>
+  
       </Fragment>
     </>
   )

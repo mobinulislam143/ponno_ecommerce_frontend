@@ -39,19 +39,22 @@ const UserProfile = ({ profile, userAds }) => {
   const ImgUpload = async () => {
     try {
       const imageData = fileInputRef.current?.files[0];
-
-      if (imageData) {
-        setUploading(true);
-        const success = await updateProfileImageRequest(imageData);
-
-        if (success) {
-          SuccessToast("Image Uploaded Successfully...");
-          setImageSrc(URL.createObjectURL(imageData)); // Update the image URL
-        } else {
-          ErrorToast("Image Upload Failed");
-        }
+  
+      // Check if an image is selected
+      if (!imageData) {
+        ErrorToast("Please select an image before uploading.");
+        return; // Exit the function early
+      }
+  
+      // Proceed with the upload if an image is selected
+      setUploading(true);
+      const success = await updateProfileImageRequest(imageData);
+  
+      if (success) {
+        SuccessToast("Image Uploaded Successfully...");
+        setImageSrc(URL.createObjectURL(imageData)); // Update the image URL
       } else {
-        ErrorToast("No image selected");
+        ErrorToast("Image Upload Failed");
       }
     } catch (e) {
       ErrorToast("Image Upload Failed");
@@ -60,6 +63,7 @@ const UserProfile = ({ profile, userAds }) => {
       setUploading(false);
     }
   };
+  
 
   return (
     <div className="container mx-auto p-5 bg-gray-100 rounded-lg shadow-md">

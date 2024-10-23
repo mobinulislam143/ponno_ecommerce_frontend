@@ -10,6 +10,7 @@ import { AllBrandRequest, AllCategoryRequest, AllDivisionRequest, AllSubCategory
 import { useSelector } from 'react-redux';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { MdOutlineDescription } from "react-icons/md";
 
 
 
@@ -257,7 +258,7 @@ function AllAds({ products }) {
                                             <img src={item.details.img2} className='w-24 hover:scale-110 transition-all' alt='img' />
                                             <div className='w-full'>
                                                 <h1 className='text-2xl font-bold text-bg_secondary'>{item.title} ({item.remark})</h1>
-                                                <p className='text-lg text-black'>{item.shortDes.substring(0, 40)}...</p>
+                                                <p className='text-lg text-black flex items-center gap-1'><MdOutlineDescription className='text-bg_primary text-lg' />{item.shortDes.substring(0, 40)}...</p>
                                                 <p className='flex gap-2 items-center text-black'><TiLocationOutline /><span>{item.locations.district}, {item.locations.division}</span></p>
                                                 <h3 className='text-bg_primary pt-3 font-bold text-lg '>Tk {item.price}</h3>
                                                 <p className='text-right text-sm text-black'>Posted at {item.createdAt}</p>
@@ -271,18 +272,6 @@ function AllAds({ products }) {
                             <p className='pt-10'>Sorry, there are no products for your requirement.</p>
                         )}
 
-                        <div className='mt-9 w-full p-2 rounded-md border-2 hover:shadow-lg shadow-custom-pink border-pink-400 cursor-pointer bg-purple-50 tran '>
-                            <div className='flex gap-3'>
-                                <img src='product1.jpg' className='w-24 hover:scale-110 transition-all' alt='img' />
-                                <div className='w-full'>
-                                    <h1 className='text-lg font-bold'>{`Gigabyte 5g 4th generation gaming pc 8gb ram, Ryzon Processor`.substring(0, 40)}...</h1>
-                                    <p className='text-lg '>Computer's Processor (new)</p>
-                                    <p className='flex gap-2 items-center'><TiLocationOutline /><span>Cox'sBazar, Chattogram</span></p>
-                                    <h3 className='text-purple-600 pt-3 font-bold text-lg '>Tk 26,500</h3>
-                                    <p className='text-right text-sm'>Posted at 10 March 2023</p>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <div>

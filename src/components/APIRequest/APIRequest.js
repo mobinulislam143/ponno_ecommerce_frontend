@@ -6,7 +6,7 @@ import { ErrorToast, SuccessToast, getEmail, setEmail, setToken } from "../helpe
 import Cookie from 'js-cookie'
 import { getProfile, getUserProduct } from "../../redux/state-slice/user-slice";
 
-const BaseUrl = "https://ponnosheba-backend.onrender.com"
+const BaseUrl = "https://ponnosheba-backend.vercel.app"
 
 //user api
 export async function RegistrationRequest(email, firstName,lastName,age,mobile,address, password, confirmPassword){
@@ -176,14 +176,14 @@ export async function getDistrictRequest(division) {
 }
 
 
-export async function PostAdsRequest(postBody){
+export async function PostAdsRequest(formData){
     store.dispatch(showLoader())
     let url = `${BaseUrl}/api/createUserProduct`
     try{
-        const res = await axios.post(url, postBody,  {
+        const res = await axios.post(url, formData,  {
             headers: {
                 'token': Cookie.get('token'),
-                'Content-Type': 'application/json'
+                'Content-Type': 'multipart/form-data'
             }
         } )
         if(res.status === 200){
@@ -379,6 +379,38 @@ export async function UserAdsRequest(){
     }catch(e){
         console.log(e.toString());
         store.dispatch(hideLoader())
+    }
+}
+
+
+export async function DeleteUserAdsRequest(productId) {
+    store.dispatch(showLoader());
+
+    const token = Cookie.get('token');  // Get token from cookies
+
+    if (!token) {
+        console.log("No token found, please login.");
+        store.dispatch(hideLoader());
+        return;
+    }
+
+    let url = `${BaseUrl}/api/deleteUserproduct/${productId}`;  // Include product ID in the URL
+
+    try {
+        const res = await axios.delete(url, {
+            headers: {
+                'Authorization': `Bearer ${token}`,  // Pass token in Authorization header
+            }
+        });
+
+        if (res.data['status'] === "success") {
+            store.dispatch(hideLoader());
+            // Handle successful deletion, maybe refresh the product list
+            console.log("Product deleted successfully");
+        }
+    } catch (e) {
+        console.log(e.toString());
+        store.dispatch(hideLoader());
     }
 }
 

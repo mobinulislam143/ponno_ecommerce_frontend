@@ -30,7 +30,7 @@ const UserProfilePage = () => {
   return (
     <Fragment>
       <MasterLayout>
-        <ProfileComponent> {/* Use ProfileComponent to avoid name conflict */}
+        <ProfileComponent> 
           <Suspense fallback={<LazyLoader />}>
             <UserProfile profile={userProfileData} userAds={userAdsdata} />
           </Suspense>

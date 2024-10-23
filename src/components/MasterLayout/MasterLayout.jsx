@@ -58,7 +58,7 @@ function MasterLayout(props) {
                             <BsFillSignpostFill className="text-xl" /> Post your Ad
                         </NavLink>
                         <NavLink
-                            to={getToken() ? "/user-profile" : "/registration"}
+                            to={getToken() ? "/users/user-profile" : "/registration"}
                             className="btn text-lg bg-bg_primary focus:bg-bg_secondary px-4 py-2 text-white rounded-full hover:bg-bg_primary_hover hover:text-white transition-all flex items-center border-0 gap-2"
                         >
                             <RiAccountCircleFill className="text-xl" /> My Account

@@ -51,7 +51,6 @@ const EditProfile = ({ profile }) => {
       }
 
       const postBody = { ...formData };
-      delete postBody.confirmPassword;
 
       await EditProfileRequest(postBody);
       SuccessToast("Profile updated successfully");
